@@ -2,39 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc></loc>
+    <loc>https://ramzaveri.netlify.app/</loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/</loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
     <priority>0</priority>
   </url><url>
-    <loc>experience/tracking-3d/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/tracking-3d/</loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/tracking-2d/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/tracking-2d/</loc>
     <lastmod>2024-05-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/adasoccl/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/adasoccl/</loc>
     <lastmod>2024-04-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/aso/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/aso/</loc>
     <lastmod>2024-03-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/adapose/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/adapose/</loc>
     <lastmod>2024-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/celltranspose/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/celltranspose/</loc>
     <lastmod>2023-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/plant/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/plant/</loc>
     <lastmod>2022-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>experience/fitbit/</loc>
+    <loc>https://ramzaveri.netlify.app/experience/fitbit/</loc>
     <lastmod>2021-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>categories/</loc>
+    <loc>https://ramzaveri.netlify.app/categories/</loc>
   </url><url>
-    <loc>tags/</loc>
+    <loc>https://ramzaveri.netlify.app/tags/</loc>
   </url>
 </urlset>
