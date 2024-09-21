@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title></title>
-    <link>https://raditian-hugo.radity.com/experience/</link>
+    <link>experience/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jul 2024 00:00:00 +0100</lastBuildDate><atom:link href="https://raditian-hugo.radity.com/experience/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Jul 2024 00:00:00 +0100</lastBuildDate><atom:link href="experience/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lead | 3D Cell Tracking</title>
-      <link>https://raditian-hugo.radity.com/experience/tracking-3d/</link>
+      <link>experience/tracking-3d/</link>
       <pubDate>Mon, 01 Jul 2024 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/tracking-3d/</guid>
+      <guid>experience/tracking-3d/</guid>
       <description>3D cell Tracking Designing an extension of our 2D tracker for tracking cells in 3D time-series datasets. More details will be released soon.
 Publication TBD</description>
     </item>
     
     <item>
       <title>Lead | Robust 2D Visual Tracking</title>
-      <link>https://raditian-hugo.radity.com/experience/tracking-2d/</link>
+      <link>experience/tracking-2d/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/tracking-2d/</guid>
+      <guid>experience/tracking-2d/</guid>
       <description>Efficient Object Tracking in the Wild I designed an adaptive framework for 2D object tracking. More details will be released soon.
 Publication TBD</description>
     </item>
     
     <item>
       <title>Co-Lead | Online Continual Learning</title>
-      <link>https://raditian-hugo.radity.com/experience/adasoccl/</link>
+      <link>experience/adasoccl/</link>
       <pubDate>Mon, 01 Apr 2024 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/adasoccl/</guid>
+      <guid>experience/adasoccl/</guid>
       <description>Online Continual Learning for Data with Temporal Dependencies Description More details will be released soon.
 Publication TBD</description>
     </item>
     
     <item>
       <title>Co-Lead | Online Optimization</title>
-      <link>https://raditian-hugo.radity.com/experience/aso/</link>
+      <link>experience/aso/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/aso/</guid>
+      <guid>experience/aso/</guid>
       <description>Online Stochastic Optimization for Data with Temporal Dependencies Description This project tackles the problem of online optimization when the data has high temporal correspondence. I co-designed an online stochastic optimization approach with Shivang Patel.
 Publication S. Patel*, R. J. Zaveri *, S. Chambers, Z. Randhawa, and G. Doretto, &amp;lsquo;&amp;lsquo;Online Stochastic Optimization for Data with Temporal Dependencies,&amp;quot; In European Conference on Computer Vision Workshops (ECCVW), 2024.</description>
     </item>
     
     <item>
       <title>Lead | Non-Convex Cell Segmentation</title>
-      <link>https://raditian-hugo.radity.com/experience/adapose/</link>
+      <link>experience/adapose/</link>
       <pubDate>Thu, 01 Feb 2024 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/adapose/</guid>
+      <guid>experience/adapose/</guid>
       <description>Few-shot adaptation for morphology-independent cell instance segmentation Description Microscopy data collections are becoming larger and more frequent. Accurate and precise quantitative analysis tools like cell instance segmentation are necessary to benefit from them. This is challenging due to the variability in the data, which requires retraining the segmentation model to maintain high accuracy on new collections. This is needed especially for segmenting cells with elongated and non-convex morphology like bacteria. We propose to reduce the amount of annotation and computing power needed for retraining the model by introducing a few-shot domain adaptation approach that requires annotating only one to five cells of the new data to process and that quickly adapts the model to maintain high accuracy.</description>
     </item>
     
     <item>
       <title>Co-Lead | Convex Cell Segmentation</title>
-      <link>https://raditian-hugo.radity.com/experience/celltranspose/</link>
+      <link>experience/celltranspose/</link>
       <pubDate>Wed, 01 Feb 2023 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/celltranspose/</guid>
+      <guid>experience/celltranspose/</guid>
       <description>Celltranspose: Few-shot domain adaptation for cellular instance segmentation Description Automated cellular instance segmentation is a process utilized for accelerating biological research for the past two decades, and recent advancements have produced higher quality results with less effort from the biologist. Most current endeavors focus on completely cutting the researcher out of the picture by generating highly generalized models. However, these models invariably fail when faced with novel data, distributed differently than the ones used for training.</description>
     </item>
     
     <item>
       <title>Co-Lead | Plant Analysis</title>
-      <link>https://raditian-hugo.radity.com/experience/plant/</link>
+      <link>experience/plant/</link>
       <pubDate>Tue, 01 Feb 2022 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/plant/</guid>
+      <guid>experience/plant/</guid>
       <description>Fine-grained visual classification of plant species in the wild: Object detection as a reinforced means of attention Description Plant species identification in the wild is a difficult problem in part due to the high variability of the input data, but also because of complications induced by the long-tail effects of the datasets distribution. Inspired by the most recent fine-grained visual classification approaches which are based on attention to mitigate the effects of data variability, we explore the idea of using object detection as a form of attention.</description>
     </item>
     
     <item>
       <title>Lead | Fitbit Analysis</title>
-      <link>https://raditian-hugo.radity.com/experience/fitbit/</link>
+      <link>experience/fitbit/</link>
       <pubDate>Mon, 01 Feb 2021 00:00:00 +0100</pubDate>
       
-      <guid>https://raditian-hugo.radity.com/experience/fitbit/</guid>
+      <guid>experience/fitbit/</guid>
       <description>Fitbit Data Extraction and Digital Analysis Description  Developed an IoT system to receive Fitbit data autonomously and trained machine learning models to infer the desired goals. This work was part of the NSF Artificial Intelligence and Health 2020 workshop. Code  </description>
     </item>
     

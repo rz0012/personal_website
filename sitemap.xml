@@ -2,39 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://raditian-hugo.radity.com/</loc>
+    <loc></loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/</loc>
+    <loc>experience/</loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
     <priority>0</priority>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/tracking-3d/</loc>
+    <loc>experience/tracking-3d/</loc>
     <lastmod>2024-07-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/tracking-2d/</loc>
+    <loc>experience/tracking-2d/</loc>
     <lastmod>2024-05-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/adasoccl/</loc>
+    <loc>experience/adasoccl/</loc>
     <lastmod>2024-04-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/aso/</loc>
+    <loc>experience/aso/</loc>
     <lastmod>2024-03-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/adapose/</loc>
+    <loc>experience/adapose/</loc>
     <lastmod>2024-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/celltranspose/</loc>
+    <loc>experience/celltranspose/</loc>
     <lastmod>2023-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/plant/</loc>
+    <loc>experience/plant/</loc>
     <lastmod>2022-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/experience/fitbit/</loc>
+    <loc>experience/fitbit/</loc>
     <lastmod>2021-02-01T00:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/categories/</loc>
+    <loc>categories/</loc>
   </url><url>
-    <loc>https://raditian-hugo.radity.com/tags/</loc>
+    <loc>tags/</loc>
   </url>
 </urlset>

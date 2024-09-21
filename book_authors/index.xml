@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Book_authors on </title>
-    <link>https://raditian-hugo.radity.com/book_authors/</link>
+    <link>book_authors/</link>
     <description>Recent content in Book_authors on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://raditian-hugo.radity.com/book_authors/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="book_authors/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
