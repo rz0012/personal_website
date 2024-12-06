@@ -18,23 +18,22 @@ Publication TBD</description>
     </item>
     
     <item>
+      <title>Co-Lead | Online Continual Learning</title>
+      <link>https://ramzaveri.netlify.app/experience/adasoccl/</link>
+      <pubDate>Sat, 01 Jun 2024 00:00:00 +0100</pubDate>
+      
+      <guid>https://ramzaveri.netlify.app/experience/adasoccl/</guid>
+      <description>Online Continual Learning for Data with Temporal Dependencies Description More details will be released soon.
+Publication TBD</description>
+    </item>
+    
+    <item>
       <title>Lead | Robust 2D Visual Tracking</title>
       <link>https://ramzaveri.netlify.app/experience/tracking-2d/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0100</pubDate>
       
       <guid>https://ramzaveri.netlify.app/experience/tracking-2d/</guid>
-      <description>Efficient Object Tracking in the Wild I designed an adaptive framework for 2D object tracking. More details will be released soon.
-Publication TBD</description>
-    </item>
-    
-    <item>
-      <title>Co-Lead | Online Continual Learning</title>
-      <link>https://ramzaveri.netlify.app/experience/adasoccl/</link>
-      <pubDate>Mon, 01 Apr 2024 00:00:00 +0100</pubDate>
-      
-      <guid>https://ramzaveri.netlify.app/experience/adasoccl/</guid>
-      <description>Online Continual Learning for Data with Temporal Dependencies Description More details will be released soon.
-Publication TBD</description>
+      <description>Efficient Object Tracking in the Wild Efficient visual trackers overfit to their training distributions and lack generalization abilities, resulting in them performing well on their respective in-distribution (ID) test sets and not as well on out-of-distribution (OOD) sequences, imposing limitations to their deployment in-the-wild under constrained resources. We introduce SiamABC, a highly efficient Siamese tracker that significantly improves tracking performance, even on OOD sequences. SiamABC takes advantage of new architectural designs in the way it bridges the dynamic variability of the target, and of new losses for training.</description>
     </item>
     
     <item>
@@ -60,7 +59,7 @@ Publication TBD</description>
       
       <guid>https://ramzaveri.netlify.app/experience/aso/</guid>
       <description>Online Stochastic Optimization for Data with Temporal Dependencies Description This project tackles the problem of online optimization when the data has high temporal correspondence. I co-designed an online stochastic optimization approach with Shivang Patel.
-Publication S. Patel*, R. J. Zaveri *, S. Chambers, Z. Randhawa, and G. Doretto, &amp;lsquo;&amp;lsquo;Online Stochastic Optimization for Data with Temporal Dependencies,&amp;quot; In European Conference on Computer Vision Workshops (ECCVW), 2024.</description>
+Agents operating in the open-world sense data streams that are non-stationary and temporally correlated, from which they need to quickly learn new knowledge to adapt and be resilient to the changing environment they explore. Current learning-based vision approaches are not designed for agents operating in real-time in the open-world.</description>
     </item>
     
     <item>

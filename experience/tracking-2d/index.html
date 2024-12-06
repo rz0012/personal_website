@@ -324,11 +324,11 @@
             </div>
             
 
-            <div class="experience  selected " >
-              <a href="https://ramzaveri.netlify.app/experience/tracking-2d/">
+            <div class="experience " >
+              <a href="https://ramzaveri.netlify.app/experience/adasoccl/">
                 
-                <div class="experience__date">September 2023 - Present</div>
-                <div class="experience__title">Lead | Robust 2D Visual Tracking</div>
+                <div class="experience__date">April 2024 - Present</div>
+                <div class="experience__title">Co-Lead | Online Continual Learning</div>
                 <div class="experience__company">
                   Vision and Learning Group.
                   <span class="experience__location"
@@ -339,11 +339,11 @@
             </div>
             
 
-            <div class="experience " >
-              <a href="https://ramzaveri.netlify.app/experience/adasoccl/">
+            <div class="experience  selected " >
+              <a href="https://ramzaveri.netlify.app/experience/tracking-2d/">
                 
-                <div class="experience__date">April 2024 - Present</div>
-                <div class="experience__title">Co-Lead | Online Continual Learning</div>
+                <div class="experience__date">September 2023 - September 2024</div>
+                <div class="experience__title">Lead | Robust 2D Visual Tracking</div>
                 <div class="experience__company">
                   Vision and Learning Group.
                   <span class="experience__location"
@@ -431,9 +431,16 @@
           </div>
           <div class="col-12 col-md-7 mt-7 mt-sm-0">
             <h3 id="efficient-object-tracking-in-the-wild">Efficient Object Tracking in the Wild</h3>
-<p>I designed an adaptive framework for 2D object tracking. More details will be released soon.</p>
+<p>Efficient visual trackers overfit to their training distributions and lack generalization abilities, resulting in them performing well on their respective in-distribution (ID) test sets and not as well on out-of-distribution (OOD) sequences, imposing limitations to their deployment in-the-wild under constrained resources. We introduce SiamABC, a highly efficient Siamese tracker that significantly improves tracking performance, even on OOD sequences. SiamABC takes advantage of new architectural designs in the way it bridges the dynamic variability of the target, and of new losses for training. Also, it directly addresses OOD tracking generalization by including a fast backward-free dynamic test-time adaptation method that continuously adapts the model according to the dynamic visual changes of the target. Our extensive experiments suggest that SiamABC shows remarkable performance gains in OOD sets while maintaining accurate performance on the ID benchmarks. SiamABC outperforms MixFormerV2-S by 7.6% on the OOD AVisT benchmark while being 3x faster (100 FPS) on a CPU. Our code and models are available at <a href="https://wvuvl.github.io/SiamABC/">our project page</a>.</p>
+<ul>
+<li>The algorithms are constrained to be time and cost-effective to induce real-time tracking on personal machines.</li>
+<li>I tackled this problem on 2D object tracking benchmarks, where I devised a test-time adaptation approach to track objects under adverse visibility conditions on edge devices.</li>
+<li>To achieve test-time adaptation capabilities, I introduced a forward-only update rule to the batch-normalization layers in our neural network that evolves with the incoming data stream.</li>
+<li>This strategy had a negligible effect on the latency while improving the performance significantly.</li>
+<li>To tackle the issue of the limited representational capacity of efficient trackers, I designed CPU-efficient attention networks and novel self-supervised cost functions.</li>
+</ul>
 <h4 id="publication">Publication</h4>
-<p>TBD</p>
+<p>R. J. Zaveri, S. Patel, Y. Gu, and G. Doretto, “Improving Accuracy and Generalization for Efficient Visual Tracking,” in Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), Feb. 2025.</p>
 
           </div>
         </div>
