@@ -14,10 +14,22 @@
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
   const hash = (n) => { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
 
+  // Canvas palette, read from the active theme's CSS tokens (see :root and css/themes.css)
   const C = {
     cyan: "56,232,255", violet: "139,108,255", magenta: "255,79,216",
     lime: "125,255,178", red: "255,84,112", white: "230,236,255", dim: "99,112,143",
+    bg: "4,6,12", core: "255,255,255",
   };
+  const THEME = { blend: "lighter", mono: '"JetBrains Mono", monospace', fx: "none" };
+  (function readTheme() {
+    const cs = getComputedStyle(document.documentElement);
+    const v = (n) => cs.getPropertyValue(n).trim().replace(/\s+/g, "");
+    const map = { cyan: "cyan", violet: "violet", magenta: "magenta", lime: "lime", red: "red", white: "text", dim: "dim", bg: "bg", core: "core" };
+    for (const k in map) { const x = v("--rgb-" + map[k]); if (x) C[k] = x; }
+    THEME.blend = cs.getPropertyValue("--canvas-blend").trim() || "lighter";
+    THEME.mono = cs.getPropertyValue("--mono").trim() || THEME.mono;
+    THEME.fx = cs.getPropertyValue("--fx").trim() || "none";
+  })();
   const rgba = (c, a) => `rgba(${c},${a})`;
 
   /* ---------------- boot sequence (once per session) ---------------- */
@@ -148,7 +160,7 @@
     const c = document.createElement("canvas"); c.width = c.height = size;
     const g = c.getContext("2d"), r = size / 2;
     const grd = g.createRadialGradient(r, r, 0, r, r, r);
-    grd.addColorStop(0, rgba("255,255,255", 1)); grd.addColorStop(0.15, rgba(color, 0.95));
+    grd.addColorStop(0, rgba(C.core, 1)); grd.addColorStop(0.15, rgba(color, 0.95));
     grd.addColorStop(0.45, rgba(color, 0.25)); grd.addColorStop(1, rgba(color, 0));
     g.fillStyle = grd; g.fillRect(0, 0, size, size);
     return c;
@@ -160,7 +172,7 @@
     ctx.stroke();
   }
   function label(ctx, txt, x, y, color = C.dim, size = 9, align = "left") {
-    ctx.font = `500 ${size}px "JetBrains Mono", monospace`; ctx.fillStyle = rgba(color, 0.95); ctx.textAlign = align; ctx.fillText(txt, x, y); ctx.textAlign = "left";
+    ctx.font = `500 ${size}px ${THEME.mono}`; ctx.fillStyle = rgba(color, 0.95); ctx.textAlign = align; ctx.fillText(txt, x, y); ctx.textAlign = "left";
   }
   function trace(ctx, w, f, y0, amp, color, alpha = 1, lw = 1.4) {
     ctx.beginPath();
@@ -238,7 +250,7 @@
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
       }
       // action potentials travelling along axons
-      ctx.globalCompositeOperation = "lighter";
+      ctx.globalCompositeOperation = THEME.blend;
       for (const p of pulses) {
         const a = nodes[p.a], b = nodes[p.b];
         const x = a.x + (b.x - a.x) * p.p, y = a.y + (b.y - a.y) * p.p;
@@ -445,13 +457,13 @@
       for (let i = -10; i <= 10; i++) { ctx.beginPath(); ctx.moveTo(w / 2 + i * 12, h * 0.45); ctx.lineTo(w / 2 + i * 70, h); ctx.stroke(); }
       for (let j = 0; j < 8; j++) { const y = h * 0.45 + Math.pow(j / 8, 1.8) * h * 0.55; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
       const x = w * (0.5 + 0.32 * Math.sin(t * 0.9)), y = h * (0.5 + 0.22 * Math.sin(t * 1.7 + 1));
-      ctx.globalCompositeOperation = "lighter";
+      ctx.globalCompositeOperation = THEME.blend;
       const g = ctx.createRadialGradient(x, y, 0, x, y, 22); g.addColorStop(0, rgba(C.white, 0.95)); g.addColorStop(0.3, rgba(C.violet, 0.6)); g.addColorStop(1, rgba(C.violet, 0));
       ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, 22, 0, TAU); ctx.fill();
       ctx.globalCompositeOperation = "source-over";
       // adverse visibility: drifting fog
       const fog = Math.max(0, Math.sin(t * 0.5)) * 0.55;
-      for (let i = 0; i < 26; i++) { ctx.fillStyle = rgba("150,170,210", fog * 0.12); const fx = (hash(i) * w + t * 20 * (0.5 + hash(i + 3))) % (w + 60) - 30; ctx.beginPath(); ctx.arc(fx, hash(i + 7) * h, 20 + hash(i + 1) * 30, 0, TAU); ctx.fill(); }
+      for (let i = 0; i < 26; i++) { ctx.fillStyle = rgba(C.dim, fog * 0.2); const fx = (hash(i) * w + t * 20 * (0.5 + hash(i + 3))) % (w + 60) - 30; ctx.beginPath(); ctx.arc(fx, hash(i + 7) * h, 20 + hash(i + 1) * 30, 0, TAU); ctx.fill(); }
       if (s.bx === undefined) { s.bx = x; s.by = y; }
       s.bx += (x - s.bx) * 0.2; s.by += (y - s.by) * 0.2;
       const bw = 52, bh = 44, l = s.bx - bw / 2, tp = s.by - bh / 2, k = 10;
@@ -460,13 +472,13 @@
       ctx.stroke(); ctx.lineWidth = 1;
       ctx.strokeStyle = rgba(C.cyan, 0.3); ctx.strokeRect(l, tp, bw, bh);
       ctx.fillStyle = rgba(C.cyan, 0.9); ctx.fillRect(l, tp - 14, 74, 12);
-      label(ctx, `target ${(0.97 - fog * 0.08).toFixed(2)}`, l + 3, tp - 5, "4,6,12", 8);
+      label(ctx, `target ${(0.97 - fog * 0.08).toFixed(2)}`, l + 3, tp - 5, C.bg, 8);
       label(ctx, "CPU · real-time · TTA on", 8, 14, C.cyan); if (fog > 0.2) label(ctx, "LOW VISIBILITY", w - 8, 14, C.magenta, 8, "right");
     },
     cells(ctx, w, h, t, s, dt, opt = {}) {
       if (!s.c) s.c = Array.from({ length: opt.rods ? 9 : 13 }, (_, i) => ({ x: rand(0.06, 0.94) * w, y: rand(0.1, 0.9) * h, r: rand(10, 20), ph: rand(TAU), a: rand(TAU), hue: i % 4, len: rand(28, 50), bend: rand(-0.6, 0.6) }));
       const pal = [C.cyan, C.violet, C.magenta, C.lime];
-      ctx.fillStyle = "rgba(10,12,20,1)"; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = rgba(C.bg, 1); ctx.fillRect(0, 0, w, h);
       const scan = ((t * 0.22) % 1.25) * w;
       for (const c of s.c) {
         const seg = c.x < scan;
@@ -475,15 +487,15 @@
           const mx = c.x - dy * c.bend, my = c.y + dx * c.bend;
           ctx.lineCap = "round";
           ctx.beginPath(); ctx.moveTo(c.x - dx, c.y - dy); ctx.quadraticCurveTo(mx, my, c.x + dx, c.y + dy);
-          ctx.lineWidth = 13; ctx.strokeStyle = seg ? rgba(pal[c.hue], 0.95) : "rgba(120,130,150,.35)"; ctx.stroke();
-          ctx.lineWidth = 9; ctx.strokeStyle = seg ? rgba(pal[c.hue], 0.3) : "rgba(160,170,190,.25)"; ctx.stroke();
+          ctx.lineWidth = 13; ctx.strokeStyle = seg ? rgba(pal[c.hue], 0.95) : rgba(C.dim, 0.5); ctx.stroke();
+          ctx.lineWidth = 9; ctx.strokeStyle = seg ? rgba(pal[c.hue], 0.3) : rgba(C.white, 0.15); ctx.stroke();
           ctx.lineWidth = 1; ctx.lineCap = "butt";
         } else {
           ctx.beginPath();
           for (let k = 0; k <= 14; k++) { const a = (k / 14) * TAU, r = c.r * (1 + 0.12 * Math.sin(a * 3 + t + c.ph) + 0.06 * Math.sin(a * 5 - t)); const px = c.x + Math.cos(a) * r, py = c.y + Math.sin(a) * r; k ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
           ctx.closePath();
           if (seg) { ctx.fillStyle = rgba(pal[c.hue], opt.entropy ? 0.15 + 0.25 * (1 - opt.entropy) : 0.28); ctx.fill(); ctx.strokeStyle = rgba(pal[c.hue], 1); ctx.lineWidth = 1.5; ctx.stroke(); ctx.lineWidth = 1; }
-          else { const g = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.r * 1.2); g.addColorStop(0, "rgba(200,210,230,.45)"); g.addColorStop(1, "rgba(200,210,230,0)"); ctx.fillStyle = g; ctx.fill(); }
+          else { const g = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.r * 1.2); g.addColorStop(0, rgba(C.white, 0.45)); g.addColorStop(1, rgba(C.white, 0)); ctx.fillStyle = g; ctx.fill(); }
         }
       }
       ctx.fillStyle = rgba(C.cyan, 0.9); ctx.fillRect(scan, 0, 1.5, h);
@@ -576,7 +588,7 @@
       const k = Math.floor(t / 1.1) % boxes.length;
       boxes.forEach(([lb, x, y, bw, bh], i) => {
         const on = i === k; ctx.strokeStyle = rgba(on ? C.cyan : C.white, on ? 1 : 0.18); ctx.lineWidth = on ? 1.6 : 1; ctx.strokeRect(x, y, bw, bh); ctx.lineWidth = 1;
-        if (on) { ctx.fillStyle = rgba(C.cyan, 0.9); ctx.fillRect(x, y - 12, lb.length * 5.6 + 6, 11); label(ctx, lb, x + 3, y - 3, "4,6,12", 8); }
+        if (on) { ctx.fillStyle = rgba(C.cyan, 0.9); ctx.fillRect(x, y - 12, lb.length * 5.6 + 6, 11); label(ctx, lb, x + 3, y - 3, C.bg, 8); }
       });
       const sp = ["Q. alba", "A. rubrum", "C. florida"][Math.floor(t / 4.4) % 3];
       label(ctx, "organ-fused prediction", w - 8, h * 0.8, C.dim, 8, "right"); label(ctx, sp, w - 8, h * 0.8 + 14, C.cyan, 10, "right");
@@ -653,10 +665,52 @@
     dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
   }
 
+  /* ---------------- theme effect: digital rain (Matrix theme) ---------------- */
+  function Rain() {
+    const cv = document.createElement("canvas");
+    cv.className = "fx-rain"; cv.setAttribute("aria-hidden", "true");
+    document.body.prepend(cv);
+    const glyphs = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789θΔΣ";
+    const fs = 16; let cols = [], W = 0, H = 0, ctx, acc = 0;
+    const resize = () => { const f = fit(cv); if (!f) return; ({ ctx, w: W, h: H } = f); cols = Array.from({ length: Math.ceil(W / fs) }, () => rand(-H / fs, 0)); ctx.fillStyle = rgba(C.bg, 1); ctx.fillRect(0, 0, W, H); };
+    window.addEventListener("resize", resize); resize();
+    return {
+      el: cv,
+      frame(dt) {
+        if (!ctx) return;
+        acc += dt; if (acc < 1 / 20) return; acc = 0;          // classic stepped look
+        ctx.fillStyle = rgba(C.bg, 0.12); ctx.fillRect(0, 0, W, H);
+        ctx.font = `${fs}px ${THEME.mono}`;
+        cols.forEach((y, i) => {
+          const ch = glyphs[(Math.random() * glyphs.length) | 0];
+          ctx.fillStyle = rgba(C.core, 0.9); ctx.fillText(ch, i * fs, y * fs);
+          ctx.fillStyle = rgba(C.cyan, 0.75); ctx.fillText(glyphs[(Math.random() * glyphs.length) | 0], i * fs, (y - 1) * fs);
+          cols[i] = y * fs > H && Math.random() > 0.975 ? 0 : y + 1;
+        });
+      },
+    };
+  }
+
+  /* ---------------- theme switcher (theme-lab branch only) ---------------- */
+  function themeSwitcher() {
+    const themes = [["neural", "Neural"], ["matrix", "Matrix"], ["biolum", "Bioluminescent"], ["lab", "Lab Journal"], ["synth", "Synthwave"]];
+    const cur = document.documentElement.getAttribute("data-theme") || "neural";
+    const box = document.createElement("div");
+    box.className = "theme-switch mono";
+    box.innerHTML = '<span class="ts-label">THEME</span>' + themes.map(([k, n]) => `<button data-t="${k}" class="${k === cur ? "on" : ""}">${n}</button>`).join("");
+    box.addEventListener("click", (e) => {
+      const b = e.target.closest("button"); if (!b) return;
+      try { localStorage.setItem("rz-theme", b.dataset.t); } catch (err) {}
+      const u = new URL(location.href); u.searchParams.delete("theme"); location.replace(u.toString());
+    });
+    document.body.appendChild(box);
+  }
+
   /* ---------------- init ---------------- */
-  boot(); nav(); cursor(); reveals(); counters(); scramble(); typed(); portfolio();
+  themeSwitcher(); boot(); nav(); cursor(); reveals(); counters(); scramble(); typed(); portfolio();
   const yr = $("#yr"); if (yr) yr.textContent = new Date().getFullYear();
   const actors = [];
+  if (THEME.fx === "rain" && !reduced) actors.push(Rain());
   const n = $("#neural"); if (n) actors.push(SpikingNet(n));
   const e = $("#eeg"); if (e) actors.push(Telemetry(e));
   $$("canvas[data-viz]").forEach((c) => actors.push(Mini(c)));
