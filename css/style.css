@@ -342,7 +342,7 @@ ul.ticks b { color: #fff; font-weight: 600; }
 .lnk:hover { color: #fff; border-bottom-color: var(--magenta); }
 .lnk-inline { color: var(--cyan); }
 
-.proj-dialog { width: min(640px, calc(100vw - 32px)); max-height: 86vh; overflow: auto; padding: 30px 28px 26px; color: var(--text); background: rgba(9, 14, 28, .96); border: 1px solid var(--line-2); }
+.proj-dialog { position: fixed; /* .panel sets relative, which drops the modal to the page top and scrolls there */ width: min(640px, calc(100vw - 32px)); max-height: 86vh; overflow: auto; padding: 30px 28px 26px; color: var(--text); background: rgba(9, 14, 28, .96); border: 1px solid var(--line-2); }
 .proj-dialog::backdrop { background: rgba(2,3,8,.7); backdrop-filter: blur(6px); }
 .proj-dialog[open] { animation: dlg .35s cubic-bezier(.2,.7,.2,1); }
 @keyframes dlg { from { opacity: 0; transform: translateY(16px) scale(.98); } }
