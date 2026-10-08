@@ -1,923 +1,252 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta name="generator" content="Hugo 0.92.1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ram J. Zaveri · Neural Engineering</title>
+  <meta name="description" content="Ram J. Zaveri — Ph.D. student in Neural Engineering at Boston University. Biophysically grounded models of neural dynamics, neural signal processing, neuromorphic systems and machine learning." />
+  <meta name="author" content="Ram J. Zaveri" />
+  <meta name="theme-color" content="#05070d" />
+  <meta property="og:title" content="Ram J. Zaveri · Neural Engineering" />
+  <meta property="og:description" content="Building neuromimetic systems from the principles of biological learning." />
+  <meta property="og:image" content="https://ramzaveri.com/img/ram.jpg" />
+  <meta property="og:url" content="https://ramzaveri.com/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
-    <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-
-<script>
+  <!-- Google Tag Manager -->
+  <script>
     (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=GTM-NVN2BJG' + i + dl;
-        f.parentNode.insertBefore(j, f);
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-NVN2BJG');
-</script>
+  </script>
 
-
-<title></title>
-<style>
-     
-    .rad-fade-in {
-        will-change: opacity, transform;
-        animation-name: rad-fade-in-fallback;
-        animation-duration: 5s;
-        animation-fill-mode: both;
-    }
-
-    @keyframes rad-fade-in-fallback {
-        0% {
-            opacity: 0;
-        }
-
-        75% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-    .fonts-loaded .rad-fade-in.rad-waiting {
-        animation-name: none;
-        opacity: 0;
-    }
-
-    .fonts-loaded .rad-fade-in.rad-animate {
-        animation-name: rad-fade-in;
-        animation-duration: 1.1s;
-        animation-fill-mode: both;
-    }
-
-    @keyframes rad-fade-in {
-        0% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-     
-    .rad-fade-in-long {
-        will-change: opacity, transform;
-        animation-name: rad-fade-in-long-fallback;
-        animation-duration: 8s;
-        animation-fill-mode: both;
-    }
-
-    @keyframes rad-fade-in-long-fallback {
-        0% {
-            opacity: 0;
-        }
-
-        75% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-    .fonts-loaded .rad-fade-in-long.rad-waiting {
-        animation-name: none;
-        opacity: 0;
-    }
-
-    .fonts-loaded .rad-fade-in-long.rad-animate {
-        animation-name: rad-fade-in-long;
-        animation-duration: 2s;
-        animation-fill-mode: both;
-    }
-
-    @keyframes rad-fade-in-long {
-        0% {
-            opacity: 0;
-        }
-
-        20% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-     
-    .rad-fade-down {
-        will-change: opacity, transform;
-        animation-name: rad-fade-down-fallback;
-        animation-duration: 5s;
-        animation-fill-mode: both;
-        transform: translateY(-30px);
-    }
-
-    @keyframes rad-fade-down-fallback {
-        0% {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        75% {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .fonts-loaded .rad-fade-down.rad-waiting {
-        animation-name: none;
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    .fonts-loaded .rad-fade-down.rad-animate {
-        animation-name: rad-fade-down;
-        animation-duration: 1.1s;
-    }
-
-    @keyframes rad-fade-down {
-        0% {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-     
-    .rad-scale-down {
-        will-change: opacity, transform;
-        animation-name: rad-scale-down-fallback;
-        animation-duration: 5s;
-        animation-fill-mode: both;
-        transform-origin: 50% 0;
-    }
-
-    @keyframes rad-scale-down-fallback {
-        0% {
-            opacity: 0;
-            transform: scaleY(0.95);
-        }
-
-        75% {
-            opacity: 0;
-            transform: scaleY(0.95);
-        }
-
-        100% {
-            opacity: 1;
-            transform: scaleY(1);
-        }
-    }
-
-    .fonts-loaded .rad-scale-down.rad-waiting {
-        animation-name: none;
-        opacity: 0;
-        transform: scaleY(0.95);
-    }
-
-    .fonts-loaded .rad-scale-down.rad-animate {
-        animation-name: rad-scale-down;
-        animation-duration: 1.1s;
-        animation-fill-mode: both;
-    }
-
-    @keyframes rad-scale-down {
-        0% {
-            opacity: 0;
-            transform: scaleY(0.95);
-        }
-
-        100% {
-            opacity: 1;
-            transform: scaleY(1);
-        }
-    }
-</style>
-
-
-<link rel="stylesheet" href="https://ramzaveri.netlify.app/css/main.css"/>
-
-<link rel="stylesheet" href="https://ramzaveri.netlify.app/css/rad-icons.css"/>
-
-<link rel="stylesheet" href="https://ramzaveri.netlify.app/css/custom.css"/>
-
-
-    
-
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>try{if(sessionStorage.getItem('rz-boot'))document.documentElement.classList.add('no-boot')}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
+<body data-page="home">
+  <div id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-lines" id="bootLines"></div>
+      <div class="boot-bar"><span id="bootBar"></span></div>
+    </div>
+  </div>
 
-	<header class="header fixed-top rad-animation-group" id="header">
-  <div class="container rad-fade-in">
-    <nav class="navbar navbar-expand-lg navbar-light p-0">
-      <a class="navbar-brand" href="https://ramzaveri.netlify.app/">
-        
-        <img
-          class="img-responsive"
-          src="/img/general/logo.png"
-          srcset="/img/general/logo.png 1x, /img/general/logo.png 2x"
-          alt="Header Logo"
-        />
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent, #header"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div class="cursor-ring" aria-hidden="true"></div>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="https://ramzaveri.netlify.app/">HOME</a>
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#about"
-              >ABOUT</a
-            >
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#experience"
-              >EXPERIENCE</a
-            >
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#publication"
-              >PUBLICATIONS</a
-            >
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#awards"
-              >AWARDS</a
-            >
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#reviews"
-              >REVIEWS</a
-            >
-          </li>
-          
-          <li class="nav-item">
-            <a data-scroll class="nav-link" href="index.html#contact"
-              >CONTACT</a
-            >
-          </li>
-          
-        </ul>
-      </div>
+  <header class="nav" id="nav">
+    <a href="./" class="brand" aria-label="Home">
+      <svg viewBox="0 0 40 40" class="brand-mark" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5" />
+        <circle cx="20" cy="20" r="3.2" fill="currentColor" />
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M20 16.5V6M20 23.5V34M16.7 18.6 8 13M23.3 21.4 32 27M16.7 21.4 8 27M23.3 18.6 32 13" />
+        </g>
+        <g fill="currentColor"><circle cx="20" cy="6" r="1.8" /><circle cx="20" cy="34" r="1.8" /><circle cx="8" cy="13" r="1.8" /><circle cx="32" cy="27" r="1.8" /><circle cx="8" cy="27" r="1.8" /><circle cx="32" cy="13" r="1.8" /></g>
+      </svg>
+      <span class="brand-text">RAM<span class="dim">.</span>ZAVERI</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="" data-page="home">Home</a>
+      <a href="about/" data-page="about">About</a>
+      <a href="research/" data-page="research">Research</a>
+      <a href="publications/" data-page="publications">Publications</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </div>
-</header>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
 
-	
-	
-<section class="rad-showcase rad-showcase--index rad-animation-group rad-fade-down">
-  <div class="rad-showcase__bg">
-    <img
-      class="lozad img-responsive"
-      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
-      data-src="https://ramzaveri.netlify.app/img/showcase/hand.png"
-      data-srcset="https://ramzaveri.netlify.app/img/showcase/hand.png 1x, https://ramzaveri.netlify.app/img/showcase/hand.png 2x"
-      alt=""
-    />
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-8 col-lg-7 col-xl-6">
-        <h1 class="display-1">
-          Hi, I’m Ram Zaveri.
-          <br />
-          <span
-            ></span
-          >
-        </h1>
-        <p class="lead">
-          I work as a Research Assistant in the <a target='_blank' href='https://vision.csee.wvu.edu/'>Vision and Learning Group</a>, a research group at West Virginia University. We focus on new and fundamental problems and applications in computer vision and machine learning research and develop novel techniques for endowing machines with high-level visual processing capabilities, much like humans use their visual system for action.
-        </p>
-        <a
-          href="mailto:rz0012@mix.wvu.edu"
-          class="btn btn-primary"
-        >
-          <i class="icon-mail-fill"></i>
-          rz0012@mix.wvu.edu
-        </a>
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <canvas id="neural" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="tag-line mono"><span class="pulse-dot"></span> LINK ESTABLISHED · BOSTON UNIVERSITY · NEURAL ENGINEERING</div>
+          <h1 class="hero-title">
+            <span class="scramble" data-text="Ram J.">Ram J.</span><br />
+            <span class="scramble grad" data-text="Zaveri">Zaveri</span>
+          </h1>
+          <p class="hero-role mono">&gt; <span id="typed"></span><span class="caret">▍</span></p>
+          <p class="hero-sub">
+            I take biological learning apart to build machines that learn the same way. Today that means biophysically grounded models of neural dynamics and the analysis of electrophysiological and behavioral time series, aimed at <em>neuromimetic systems</em> that help design treatments for neurological disorders.
+          </p>
+          <div class="hero-cta">
+            <a href="research/" class="btn btn-glow">Explore portfolio <span class="arr">→</span></a>
+          </div>
+          <div class="socials">
+            <a href="https://scholar.google.com/citations?user=DI2Hg9UAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar">
+              <svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" /></svg>
+            </a>
+            <a href="https://github.com/rz0012" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" /></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ramzaveri/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" /></svg>
+            </a>
+            <a href="mailto:zaveri@bu.edu" aria-label="Email">
+              <svg viewBox="0 0 24 24"><path d="M2 4h20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm10 8.6L2.4 6.4v1.9L12 14.5l9.6-6.2V6.4z" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hud panel" aria-label="Live neural telemetry">
+          <div class="hud-head mono">
+            <span><span class="pulse-dot"></span> NEURAL TELEMETRY</span>
+            <span class="dim" id="hudClock">00:00:00</span>
+          </div>
+          <canvas id="eeg" height="220"></canvas>
+          <div class="hud-stats mono">
+            <div><span class="dim">SPIKES/S</span><b id="spikeRate">0</b></div>
+            <div><span class="dim">θ POWER</span><b id="thetaPow">0.00</b></div>
+            <div><span class="dim">SYNC</span><b id="syncVal">0.00</b></div>
+          </div>
+          <p class="hud-hint mono dim">↳ move your cursor over the network to stimulate it · click to fire a burst</p>
+        </aside>
+      </div>
+
+      <div class="container">
+        <div class="stats">
+          <div class="stat"><b class="count" data-to="6">0</b><span>years of research</span></div>
+          <div class="stat"><b class="count" data-to="5">0</b><span>peer-reviewed papers</span></div>
+          <div class="stat"><b class="count" data-to="10">0</b><span>venues reviewed for</span></div>
+          <div class="stat"><b class="count" data-to="21">0</b><span>awards &amp; honors</span></div>
+        </div>
+      </div>
+      <a href="#featured" class="scroll-cue mono" aria-label="Scroll down"><span></span>SCROLL</a>
+    </section>
+
+    <!-- ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track mono">
+        <span>THEORETICAL NEUROSCIENCE</span><i>◆</i><span>NEURAL SIGNAL PROCESSING</span><i>◆</i><span>NEUROMORPHIC SYSTEMS</span><i>◆</i><span>MACHINE LEARNING</span><i>◆</i><span>BAYESIAN BRAIN</span><i>◆</i><span>PREDICTIVE CODING</span><i>◆</i><span>CONTINUAL LEARNING</span><i>◆</i><span>NEURAL BASIS OF LEARNING</span><i>◆</i>
+        <span>THEORETICAL NEUROSCIENCE</span><i>◆</i><span>NEURAL SIGNAL PROCESSING</span><i>◆</i><span>NEUROMORPHIC SYSTEMS</span><i>◆</i><span>MACHINE LEARNING</span><i>◆</i><span>BAYESIAN BRAIN</span><i>◆</i><span>PREDICTIVE CODING</span><i>◆</i><span>CONTINUAL LEARNING</span><i>◆</i><span>NEURAL BASIS OF LEARNING</span><i>◆</i>
       </div>
     </div>
-    <div class="row platform-links">
-      <div class="col-12">
-        
-        <a href="https://www.linkedin.com/in/ramzaveri/" target="_blank"
-          ><i class="icon-linkedin-line"></i
-        ></a>
-        
-        <a href="https://github.com/rz0012" target="_blank"
-          ><i class="icon-github-line"></i
-        ></a>
-        
-        <a href="https://twitter.com/ram_zaveri" target="_blank"
-          ><i class="icon-twitter-line"></i
-        ></a>
-        
-        <a href="https://www.youtube.com/@ramjitendrabhaizaveri2750" target="_blank"
-          ><i class="icon-youtube-line"></i
-        ></a>
-        
-        <a href="https://www.instagram.com/teamradity/" target="_blank"
-          ><i class="icon-scholar-line"></i
-        ></a>
-        
+
+
+    <section id="featured" class="section">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">01</span>
+          <h2>Selected <span class="grad">work</span></h2>
+        </div>
+        <div class="proj-grid">
+          <article class="proj panel" data-tags="neuro">
+            <div class="proj-media"><canvas data-viz="speech"></canvas><span class="proj-badge mono">CURRENT</span></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2026 · Guenther Lab · in progress</div>
+              <h3>Neural Dynamics of Stuttering</h3>
+              <p>Computational modeling of how neural dynamics support fluent speech motor control, and what goes wrong in stuttering. Details will follow publication.</p>
+            </div>
+          </article>
+          <article class="proj panel" data-tags="neuro signal">
+            <div class="proj-media"><canvas data-viz="theta"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2025 · Stangl Lab</div>
+              <h3>Intracranial Theta &amp; Navigation</h3>
+              <p>Full pipeline for NeuroPace RNS iEEG, from artifact rejection to theta bouts measured against the aperiodic background and related to behavior.</p>
+              <div class="proj-links"><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Per-channel artifact and epileptiform-transient rejection, detrending, line-noise removal and bandpass filtering within the RNS bandwidth.</li>
+                <li>Theta-band (~4–12 Hz) instantaneous amplitude and phase from time-frequency decomposition, with oscillatory bouts quantified against a fitted 1/f background.</li>
+                <li>Synchronized neural, behavioral and positional streams. Circular–linear statistics relate theta to distance-to-target and spatial location.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="proj panel" data-tags="vision learning">
+            <div class="proj-media"><canvas data-viz="track"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">WACV 2025 · first author</div>
+              <h3>SiamABC: Efficient Robust Tracking</h3>
+              <p>A real-time Siamese tracker that adapts at test time to adverse visibility on CPU-only edge devices.</p>
+              <div class="proj-links"><a class="lnk" href="https://wvuvl.github.io/SiamABC/" target="_blank" rel="noopener">Project ↗</a><a class="lnk" href="https://openaccess.thecvf.com/content/WACV2025/html/Zaveri_Improving_Accuracy_and_Generalization_for_Efficient_Visual_Tracking_WACV_2025_paper.html" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Efficient trackers overfit to in-distribution data. SiamABC improves accuracy markedly on out-of-distribution sequences.</li>
+                <li>A forward-only, backward-free update rule on batch-norm statistics adapts to the incoming stream at negligible latency.</li>
+                <li>CPU-efficient template–search attention and new self-supervised losses offset the limited capacity of efficient trackers.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="sec-foot reveal"><a href="research/" class="btn btn-glow">All 15 projects <span class="arr">→</span></a></div>
       </div>
-    </div>
-  </div>
-  <div class="rad-showcase__bg rad-showcase__bg--mobile">
-    <img
-      class="lozad img-responsive"
-      src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
-      data-src="https://ramzaveri.netlify.app/img/showcase/hand.png"
-      alt=""
-    />
-  </div>
-</section>
+    </section>
 
-
-	
-	
-<section class="section rad-animation-group pb-0" id="about">
-  <div class="container rad-fade-down">
-    <div class="row d-flex flex-column-reverse flex-md-row">
-      <div class="about__profile-picture col-12 col-md-6">
-        <img
-          class="lozad img-responsive image-left-overflow"
-          src="data:image/gif;base64,R0lGODlhBwACAIAAAP///wAAACH5BAEAAAEALAAAAAAHAAIAAAIDjI9YADs="
-          data-src="https://ramzaveri.netlify.app/img/who-am-i/profile.jpg"
-          data-srcset="https://ramzaveri.netlify.app/img/who-am-i/profile.jpg 1x, https://ramzaveri.netlify.app/img/who-am-i/profile.jpg 2x"
-          alt="Profile Picture"
-        />
+    <section id="explore" class="section section-alt">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">02</span>
+          <h2>Explore <span class="grad">the archive</span></h2>
+        </div>
+        <div class="portals">
+          <a href="about/" class="portal panel reveal"><span class="p-idx">/about</span><h3>About</h3><p>Background, education, the full experience trajectory, honors, peer review and toolkit.</p><span class="go">ENTER →</span></a>
+          <a href="research/" class="portal panel reveal"><span class="p-idx">/research</span><h3>Research</h3><p>Fifteen projects across neuroscience, signal processing, learning theory, vision and industry, each with a live visual.</p><span class="go">ENTER →</span></a>
+          <a href="publications/" class="portal panel reveal"><span class="p-idx">/publications</span><h3>Publications</h3><p>Peer-reviewed papers at WACV, ECCV-W, ISBI and CVPR-W, plus talks and posters.</p><span class="go">ENTER →</span></a>
+        </div>
       </div>
-      <div class="col-12 col-md-6 my-auto my-auto">
-        <h2>About Me</h2>
-        <p class="lead">
-           <p class="lead"> I am a researcher with a background in Machine Learning and Computer Vision. I am passionate about investigating underlying principles behind learning and adaptability in biological systems to build Neuromimetic Artificial Systems. My professional goal is to bridge the gap between Neuroscience and Artificial Intelligence to assist with neurological disorders or, rather, enhance our cognitive abilities. </p>
-<p class="lead"> Beyond that, I enjoy cooking, hiking, camping, reading, writing poems and science fiction, and listening to podcasts related to the Advancement of Human Civilization. </p> 
-        </p>
-        <a
-          href="https://www.linkedin.com/in/ramzaveri/"
-          target="_blank"
-          class="btn btn-primary"
-        >
-          <i class="icon-smile-fill"></i>
-          About Me
-        </a>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">03</span>
+          <h2>Open a <span class="grad">channel</span></h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <p class="lead">I'm glad to hear about collaborations on neural dynamics, BCI, neuromorphic computing or biologically inspired learning, or just to talk about brains and machines.</p>
+            <div class="contact-rows mono">
+              <a href="mailto:zaveri@bu.edu"><span class="dim">EMAIL</span> zaveri@bu.edu</a>
+              <span><span class="dim">LOCATION</span> Boston, MA, USA</span>
+              <a href="https://scholar.google.com/citations?user=DI2Hg9UAAAAJ" target="_blank" rel="noopener"><span class="dim">SCHOLAR</span> Google Scholar ↗</a>
+              <a href="https://www.linkedin.com/in/ramzaveri/" target="_blank" rel="noopener"><span class="dim">LINKEDIN</span> /in/ramzaveri ↗</a>
+              <a href="https://github.com/rz0012" target="_blank" rel="noopener"><span class="dim">GITHUB</span> rz0012 ↗</a>
+            </div>
+          </div>
+          <form class="terminal panel reveal" action="https://formspree.io/f/myzgqwjw" method="POST">
+            <div class="term-head mono"><i></i><i></i><i></i><span>transmit.sh</span></div>
+            <label class="mono" for="full_name">$ name</label>
+            <input type="text" name="full_name" id="full_name" required autocomplete="name" />
+            <label class="mono" for="email">$ email</label>
+            <input type="email" name="email" id="email" required autocomplete="email" />
+            <label class="mono" for="message">$ message</label>
+            <textarea name="message" id="message" rows="4" required></textarea>
+            <button type="submit" class="btn btn-glow">Transmit <span class="arr">→</span></button>
+          </form>
+        </div>
       </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner mono">
+      <span>© <span id="yr">2026</span> Ram J. Zaveri</span>
+      <!-- <span class="dim">Hand-built · spiking neurons rendered live in your browser</span> -->
+      <a href="#top">↑ Back to top</a>
     </div>
-  </div>
-</section>
+  </footer>
 
+  <dialog id="projDialog" class="proj-dialog panel">
+    <button class="dlg-close" aria-label="Close">×</button>
+    <div class="dlg-meta mono"></div>
+    <h3 class="dlg-title"></h3>
+    <div class="dlg-body"></div>
+    <div class="dlg-links"></div>
+  </dialog>
 
-	
-	
-<section class="section section--border-bottom rad-animation-group">
-    <div class="container">
-        <div class="row rad-fade-down">
-            <div class="col-12">
-                <h2>Education</h2>
-                <div class="row pt-2 pt-md-4">
-                    
-                    <div class="col-12 col-sm-6 mb-4 mb-sm-0">
-                        <div class="education">
-                            <div class="education__date">2023-2025</div>
-                            <div class="education__title">West Virginia University</div>
-                            <div class="education__degree">
-                                Master of Science (MS), Computer Science
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-6 mb-4 mb-sm-0">
-                        <div class="education">
-                            <div class="education__date">2019-2023</div>
-                            <div class="education__title">West Virginia University</div>
-                            <div class="education__degree">
-                                Bachelor of Science (BS), Computer Science; Minor, Biology with Neuroscience emphasis
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-	
-	
-<section id="experience" class="section-experience section section--border-bottom rad-animation-group">
-    <div class="container">
-        <div class="row flex-column-reverse flex-md-row rad-fade-down">
-            <div class="col-12 cold-md-12 col-sm-6 mt-5 mt-sm-0">
-                
-                
-                
-                
-                
-                
-                
-                <div class="experience">
-                    <a href="https://ramzaveri.netlify.app/experience/tracking-3d/">
-                        
-                        <div class="experience__date">September 2023 - Present</div>
-                        <div class="experience__title">Lead | 3D Cell Tracking</div>
-                        <div class="experience__company">Vision and Learning Group. <span class="experience__location">Morgantown, West Virginia</span></div>
-                    </a>
-                </div>
-                
-                <div class="experience">
-                    <a href="https://ramzaveri.netlify.app/experience/adasoccl/">
-                        
-                        <div class="experience__date">April 2024 - Present</div>
-                        <div class="experience__title">Co-Lead | Online Continual Learning</div>
-                        <div class="experience__company">Vision and Learning Group. <span class="experience__location">Morgantown, West Virginia</span></div>
-                    </a>
-                </div>
-                
-                <div class="experience">
-                    <a href="https://ramzaveri.netlify.app/experience/tracking-2d/">
-                        
-                        <div class="experience__date">September 2023 - September 2024</div>
-                        <div class="experience__title">Lead | Robust 2D Visual Tracking</div>
-                        <div class="experience__company">Vision and Learning Group. <span class="experience__location">Morgantown, West Virginia</span></div>
-                    </a>
-                </div>
-                
-                
-                <div class="all-experience-container">
-                    
-                    <em>And 5 more</em><br />
-                    <a href="https://ramzaveri.netlify.app/experience " title=" See additional 5 experience items"
-                        class="btn btn-primary btn-all-experience">
-                        <i class="icon-arrow-right"></i>
-                        All Projects
-                    </a>
-                </div>
-                
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="container-experience">
-  <div class="row">
-    <h2>Research Experience</h2>
-    <p class="lead">I am a Computer Science Master student with almost four years of experience in Machine Learning research in Computer Vision. My research focuses on developing efficient adaptive algorithms for real-world applications.</p>
-  </div>
-  <div class="row">
-    <div class="col-12 col-lg-4">
-      <a
-        href="https://www.linkedin.com/in/ramzaveri/"
-        class="btn btn-primary btn-block"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i class="icon-linkedin-fill"></i>
-        Linkedin
-        <i class="icon-arrow-right"></i
-      ></a>
-    </div>
-    <div class="col-12 col-lg-4">
-      <a
-        href="https://ramzaveri.netlify.app/files/Ram_Zaveri_CV.pdf"
-        class="btn btn-frameless btn-block"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i class="icon-profile-fill"></i>
-        Download My Resume
-      </a>
-    </div>
-    
-    <div class="col-12 col-lg-4">
-      <a
-        href="https://ramzaveri.netlify.app/experience"
-        class="btn btn-frameless btn-block"
-        rel="noopener noreferrer"
-      >
-        <i class="icon-arrow-right"></i>
-        All Projects
-      </a>
-    </div>
-    
-  </div>
-</div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-	
-	
-<section class="section section--border-bottom rad-animation-group", id="publication">
-    <div class="container">
-        <div class="row rad-fade-down">
-            <div class="col-12">
-                <h2>Publications</h2>
-                <div class="row pt-2 pt-md-4">
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="publication">
-                            <div class="publication__date">2025</div>
-                            <div class="publication__title">R. J. Zaveri, S. Patel, Y. Gu, and G. Doretto, “Improving Accuracy and Generalization for Efficient Visual Tracking,” in Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), Feb. 2025.</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="publication">
-                            <div class="publication__date">2024</div>
-                            <div class="publication__title">S. Patel*, R. J. Zaveri*, S. Chambers, Z. Randhawa, and G. Doretto,“Online Stochastic Optimization for Data with Temporal Dependencies,” In European Conference on Computer Vision Workshops (ECCVW), 2024.</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="publication">
-                            <div class="publication__date">2024</div>
-                            <div class="publication__title">R. J. Zaveri*, V. Brume* and G. Doretto,“Few-Shot Adaptation for Morphology-Independent Cell Instance Segmentation,” 2024 IEEE International Symposium on Biomedical Imaging (ISBI), Athens, Greece, 2024, pp. 1-5, doi: 10.1109/ISBI56570.2024.10635320.</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="publication">
-                            <div class="publication__date">2023</div>
-                            <div class="publication__title">M. R. Keaton, R. J. Zaveri, and G. Doretto, “CellTranspose: Few-Shot Domain Adaptation for Cellular Instance Segmentation,” in Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), Jan. 2023, pp. 455–466..</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="publication">
-                            <div class="publication__date">2021</div>
-                            <div class="publication__title">M. R. Keaton, R. J. Zaveri, M. Kovur, C. Henderson, D. A. Adjeroh, and G. Doretto. Fine-Grained Visual Classification of Plant Species In The Wild: Object Detection as A Reinforced Means of Attention. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 2021.</div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-	
-	
-<section class="section section--border-bottom rad-animation-group", id="awards">
-    <div class="container">
-        <div class="row rad-fade-down">
-            <div class="col-12">
-                <h2>Awards</h2>
-                <div class="row pt-2 pt-md-4">
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2024</div>
-                            <div class="awards__title">Graduate School, WVU Research Corporation Funding</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2024</div>
-                            <div class="awards__title">Engineering Departmental Scholarship</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2024</div>
-                            <div class="awards__title">The Second Best Presentation Award at the WVU Graduate Symposium</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2024</div>
-                            <div class="awards__title">Upsilon Pi Epsilon Scholarship Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2023</div>
-                            <div class="awards__title">The 9 th Annual BRAIN Initiative Meeting: Trainee Highlight Award Honorable Mention</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2023</div>
-                            <div class="awards__title">Honors Foundations Scholar</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2023</div>
-                            <div class="awards__title">Summa Cum Laude</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2023</div>
-                            <div class="awards__title">WVU Foundation Outstanding Senior (class of 2023)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2023</div>
-                            <div class="awards__title">Upsilon Pi Epsilon Dan drew Award (with the highest distinction)</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2021-2023</div>
-                            <div class="awards__title">Office of Global Affairs Merit Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2019-2023</div>
-                            <div class="awards__title">Engineering Research Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2019-2023</div>
-                            <div class="awards__title">Engineering Excellence Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2019-2023</div>
-                            <div class="awards__title">President’s List</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2022</div>
-                            <div class="awards__title">Upsilon Pi Epsilon Scholarship Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2021-2022</div>
-                            <div class="awards__title">Arts &amp; Sciences Departmental Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2021</div>
-                            <div class="awards__title">Institute of International Education Award</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-4 mb-sm-5">
-                        <div class="awards">
-                            <div class="awards__date">2020</div>
-                            <div class="awards__title">Research Apprenticeship Program graduate</div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-	
-	
-<section class="section section--border-bottom rad-animation-group", id="reviews">
-    <div class="container">
-        <div class="row rad-fade-down">
-            <div class="col-12">
-                <h2>Reviews</h2>
-                <div class="row pt-2 pt-md-4">
-                    
-                    <div class="col-12 col-sm-12 mb-2 mb-sm-5">
-                        <div class="reviews">
-                            <div class="year">2025</div>
-                            <div class="reviews">WACV, AAAI, ISBI</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-2 mb-sm-5">
-                        <div class="reviews">
-                            <div class="year">2024</div>
-                            <div class="reviews">ECCV, MICCAI, ISBI, CVPR, WACV, ICLR, ICASSP</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-12 col-sm-12 mb-2 mb-sm-5">
-                        <div class="reviews">
-                            <div class="year">2023</div>
-                            <div class="reviews">WACV, BMVC, ICCV, MICCAI</div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-	
-	
-<section id="contact" class="section section--contact pt-0">
-    <div class="container">
-        <div class="contact">
-            <h2>Contact</h2>
-            <div class="row pt-2">
-                <div class="col-12 col-lg-7">
-                    <form action="https://formspree.io/f/myzgqwjw" method="POST">
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <input type="text" name="full_name" id="full_name"
-                                       placeholder="Full Name"/>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <input type="text" name="email" id="email"
-                                       placeholder="Email Address"/>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <div class="col-12">
-                                <textarea name="message" id="message"
-                                          cols="30" rows="3" placeholder="Type Your Message Here"></textarea>
-                            </div>
-                        </div>
-                        <div class="row pt-4">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="icon-mail-fill"></i>
-                                    Send Message
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-12 col-lg-5 contact__info">
-                    <h4>Phone Number</h4>
-                    <span>&#43;1 (681) 285 2451</span>
-                    <h4>Email</h4>
-                    <span><a href="mailto:rz0012@mix.wvu.edu">rz0012@mix.wvu.edu</a></span>
-                    <h4>Location</h4>
-                    <span>Morgantown, West Virginia (USA)</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-	
-
-	<footer class="footer">
-  <div class="container">
-    <div class="footer__left">
-      <div class="footer__copy">
-        
-      </div>
-    </div>
-    <div class="footer__links">
-      <ul class="navbar-nav ">
-        <li class="nav-item">
-          <a class="nav-link" href="/">HOME</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://ramzaveri.netlify.app/index.html">ABOUT</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://ramzaveri.netlify.app/books">BOOKS</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://ramzaveri.netlify.app/public-speaking">PUBLIC SPEAKING</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="https://ramzaveri.netlify.app/index.html">CONTACT</a>
-        </li>
-        
-      </ul>
-    </div>
-    <div class="footer__right">
-      <a href="https://radity.com/"
-        ><img
-          src="https://ramzaveri.netlify.app/"
-          srcset="https://ramzaveri.netlify.app/ 1x, https://ramzaveri.netlify.app/ 2x"
-          alt=""
-      /></a>
-    </div>
-  </div>
-</footer>
-
-    <script src='https://ramzaveri.netlify.app/js/rad-animations.js'></script>
-<script src='https://ramzaveri.netlify.app/js/library/lozad.min.js'></script>
-<script>
-  window.addEventListener("load", function() {
-    var observer = window.lozad(".lozad", {
-      rootMargin: window.innerHeight / 2 + "px 0px",
-      threshold: 0.01
-    }); 
-    observer.observe();
-  });
-</script>
-<script src='https://ramzaveri.netlify.app/js/library/jquery-3.3.1.slim.min.js'></script>
-<script src='https://ramzaveri.netlify.app/js/library/bootstrap.min.js'></script>
-<script src='https://ramzaveri.netlify.app/js/sticky-header.js'></script>
-<script src='https://ramzaveri.netlify.app/js/library/smooth-scroll.polyfills.min.js'></script>
-<script src='https://ramzaveri.netlify.app/js/library/fontfaceobserver.js'></script>
-<script>
-  (function(w) {
-    
-    if (w.document.documentElement.className.indexOf("fonts-loaded") > -1) {
-      return;
-    }
-    var fontA = new w.FontFaceObserver("Inter", {
-      weight: 300
-    });
-    var fontB = new w.FontFaceObserver("Inter", {
-      weight: 400
-    });
-    var fontC = new w.FontFaceObserver("Inter", {
-      weight: 500
-    });
-    var fontD = new w.FontFaceObserver("Inter", {
-      weight: 600
-    });
-    var fontE = new w.FontFaceObserver("Inter", {
-      weight: 700
-    });
-    var fontF = new w.FontFaceObserver("Inter", {
-      weight: 900
-    });
-    w.Promise.all([fontA.load(), fontC.load(), fontF.load()]).then(function() {
-      w.document.documentElement.className += " fonts-loaded";
-    });
-  })(this);
-</script>
-<script>
-  const scroll = new SmoothScroll('a[href*="#"]');
-    $('a.nav-link').on('click', () => {
-      const navbar = $('.navbar-collapse');
-      if (navbar && navbar.hasClass('show')) {
-        $('.navbar-toggler').click();
-      }
-    })
-</script>
+  <script src="js/site.js" defer></script>
 </body>
-
 </html>

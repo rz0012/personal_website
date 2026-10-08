@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About · Ram J. Zaveri</title>
+  <meta name="description" content="Background, education, experience, honors and toolkit of Ram J. Zaveri, Ph.D. student in Neural Engineering at Boston University." />
+  <meta name="author" content="Ram J. Zaveri" />
+  <meta name="theme-color" content="#05070d" />
+  <meta property="og:title" content="Ram J. Zaveri · Neural Engineering" />
+  <meta property="og:description" content="Building neuromimetic systems from the principles of biological learning." />
+  <meta property="og:image" content="https://ramzaveri.com/img/ram.jpg" />
+  <meta property="og:url" content="https://ramzaveri.com/" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NVN2BJG');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body data-page="about">
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="../" class="brand" aria-label="Home">
+      <svg viewBox="0 0 40 40" class="brand-mark" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5" />
+        <circle cx="20" cy="20" r="3.2" fill="currentColor" />
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M20 16.5V6M20 23.5V34M16.7 18.6 8 13M23.3 21.4 32 27M16.7 21.4 8 27M23.3 18.6 32 13" />
+        </g>
+        <g fill="currentColor"><circle cx="20" cy="6" r="1.8" /><circle cx="20" cy="34" r="1.8" /><circle cx="8" cy="13" r="1.8" /><circle cx="32" cy="27" r="1.8" /><circle cx="8" cy="27" r="1.8" /><circle cx="32" cy="13" r="1.8" /></g>
+      </svg>
+      <span class="brand-text">RAM<span class="dim">.</span>ZAVERI</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../" data-page="home">Home</a>
+      <a href="../about/" data-page="about">About</a>
+      <a href="../research/" data-page="research">Research</a>
+      <a href="../publications/" data-page="publications">Publications</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="page-hero">
+      <canvas id="neural" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="container">
+        <div class="crumb mono"><a href="../">~/ram.zaveri</a> / about</div>
+        <h1>About <span class="grad">me</span></h1>
+        <p>From cell segmentation and visual tracking to intracranial EEG and in-silico speech motor control: six years of research on how biological systems learn.</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">01</span>
+          <h2>Who <span class="grad">I am</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="portrait reveal">
+            <div class="portrait-frame">
+              <img src="../img/ram.jpg" alt="Portrait of Ram Zaveri" width="760" height="1129" loading="lazy" />
+              <div class="scanline" aria-hidden="true"></div>
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+            </div>
+            <div class="portrait-meta mono">
+              <div><span class="dim">ID</span> RJZ-2029</div>
+              <div><span class="dim">NODE</span> Boston, MA</div>
+              <div><span class="dim">STATUS</span> <span class="ok">● online</span></div>
+            </div>
+          </div>
+
+          <div class="about-text reveal">
+            <p class="lead">
+              I'm a <strong>Ph.D. student in Biomedical Engineering (Neural Engineering)</strong> at Boston University and a Graduate Fellow in Dr. Frank Guenther's <strong>Speech Neuroscience Lab</strong>. I have six years of research experience across machine learning, computer vision and neural signal processing.
+            </p>
+            <p>
+              I build biophysically grounded models of neural dynamics and analyze electrophysiological and behavioral time series. The aim is to find the principles behind learning and adaptability in biological systems and turn them into neuromimetic artificial systems that help design treatments for neurological disorders. My path runs from few-shot cell segmentation and efficient visual tracking, through predictive-coding robotics and online learning, to intracranial EEG and in-silico models of speech motor control.
+            </p>
+            <p class="muted">
+              Away from the lab I cook, hike, camp, read, write poems and science fiction, and listen to podcasts about where human civilization is heading.
+            </p>
+
+            <div class="pipeline mono" aria-label="Research pipeline">
+              <div class="pipe-node"><span>01</span>SIGNAL<small>iEEG · EMA · acoustics</small></div>
+              <div class="pipe-link"></div>
+              <div class="pipe-node"><span>02</span>MODEL<small>CT-RNN · E/I · LIF</small></div>
+              <div class="pipe-link"></div>
+              <div class="pipe-node"><span>03</span>PRINCIPLE<small>predictive coding</small></div>
+              <div class="pipe-link"></div>
+              <div class="pipe-node"><span>04</span>SYSTEM<small>neuromorphic · clinical</small></div>
+            </div>
+
+            <h3 class="mini-title mono">EDUCATION</h3>
+            <div class="edu">
+              <div class="edu-item panel">
+                <div class="edu-date mono">2025 — 2029 (exp.)</div>
+                <div class="edu-deg">Ph.D. Biomedical Engineering</div>
+                <div class="edu-sch">Boston University · Neural Engineering emphasis</div>
+              </div>
+              <div class="edu-item panel">
+                <div class="edu-date mono">2023 — 2025 · GPA 4.00</div>
+                <div class="edu-deg">M.S. Computer Science</div>
+                <div class="edu-sch">West Virginia University · Thesis: <em>Efficient and Test-Time Adaptive Visual Object Tracking in the Wild</em></div>
+              </div>
+              <div class="edu-item panel">
+                <div class="edu-date mono">2019 — 2023 · GPA 4.00</div>
+                <div class="edu-deg">B.S. (Honors) Computer Science</div>
+                <div class="edu-sch">West Virginia University · Minor in Biology (Neuroscience) · Summa Cum Laude · Thesis: <em>Few-Shot Domain Adaptation for Cellular Instance Segmentation</em></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">02</span>
+          <h2>Experience <span class="grad">trajectory</span></h2>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-axon" aria-hidden="true"><span class="tl-ap"></span></div>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">MAR 2026 — PRESENT</div>
+              <h3>Graduate Fellow <span class="at">@ Speech Neuroscience Lab, BU</span></h3>
+              <p class="tl-pi mono">PI · Dr. Frank Guenther</p>
+              <p>Computational modeling of neural dynamics in speech motor control. Work in progress; details will follow publication.</p>
+              <div class="chip-row"><span class="chip">Neural dynamics</span><span class="chip">Speech motor control</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">SEP 2025 — FEB 2026</div>
+              <h3>Research Rotations <span class="at">@ Boston University</span></h3>
+              <p class="tl-pi mono">Stangl Lab · Intracranial EEG</p>
+              <p>End-to-end pipeline for iEEG from chronically implanted NeuroPace RNS depth electrodes in the medial temporal lobe. It covers artifact and epileptiform-transient rejection, theta (4–12 Hz) amplitude and phase measured against a fitted 1/f background, and circular–linear statistics linking theta to spatial navigation.</p>
+              <p class="tl-pi mono">Sen Lab · Auditory scene analysis</p>
+              <p>Co-designed a scalable cortical network with top-down attentional modulation of inhibitory interneurons. It takes ITD/ILD binaural cues as input and is evaluated by spike-timing-based decoding as competing talkers are added.</p>
+              <div class="chip-row"><span class="chip">iEEG</span><span class="chip">Theta oscillations</span><span class="chip">E/I networks</span><span class="chip">Spike timing</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">JUN 2025 — AUG 2025</div>
+              <h3>Data Scientist, Predictive Maintenance <span class="at">@ Sanofi</span></h3>
+              <p>Forecasting and anomaly detection on multivariate telemetry from vaccine filling lines, using VAE-based LSTMs trained on nominal behavior. The ONNX models run live in the Seeq/Sanofi cloud for real-time streaming inference.</p>
+              <div class="chip-row"><span class="chip">VAE-LSTM</span><span class="chip">ONNX</span><span class="chip">Seeq</span><span class="chip">Streaming inference</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">MAY 2023 — MAY 2025</div>
+              <h3>Graduate Research Assistant <span class="at">@ Vision &amp; Learning Group, WVU</span></h3>
+              <p class="tl-pi mono">PI · Dr. Gianfranco Doretto</p>
+              <p>Predictive-coding online learning for biomimetic robots. Online stochastic optimization for temporally dependent streams (ECCVW '24). Test-time adaptive tracking on edge devices (WACV '25). Few-shot non-convex cell segmentation (ISBI '24).</p>
+              <div class="chip-row"><span class="chip">Predictive coding</span><span class="chip">Online learning</span><span class="chip">Test-time adaptation</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">JAN 2022 — MAY 2025</div>
+              <h3>Research Engineer <span class="at">@ Vision &amp; Learning Group, WVU</span></h3>
+              <p class="tl-pi mono">Lab contract with IstoVisio (syGlass)</p>
+              <p>Through the lab's contract with IstoVisio, developed <b>AutoTrack</b>, adaptive 3D single-particle tracking with spatiotemporal attention fusion, and <b>syFind</b>, self-adapting 3D cell counting and segmentation. syFind was demoed at the SfN 2022 Expo inside the syGlass VR microscopy platform.</p>
+              <div class="chip-row"><span class="chip">3D microscopy</span><span class="chip">Domain adaptation</span><span class="chip">VR</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">APR 2020 — MAY 2023</div>
+              <h3>Undergraduate Research Assistant <span class="at">@ Vision &amp; Learning Group, WVU</span></h3>
+              <p>CellTranspose few-shot convex cell segmentation (WACV '23, BRAIN Initiative Trainee Highlight Award). Fine-grained classification of 1,000 plant species (CVPRW '21). An IoT pipeline for Fitbit physiological time series (NSF AI &amp; Health 2020).</p>
+              <div class="chip-row"><span class="chip">Contrastive learning</span><span class="chip">FGVC</span><span class="chip">Wearables</span></div>
+            </div>
+          </article>
+
+          <article class="tl-item reveal">
+            <div class="tl-node"></div>
+            <div class="tl-card panel">
+              <div class="tl-date mono">AUG 2023 — MAY 2025</div>
+              <h3>Graduate Teaching Assistant <span class="at">@ West Virginia University</span></h3>
+              <p><b>CS 320</b> Analysis of Algorithms (Spring '24, '25) · <b>CS 678</b> Computer Vision (graduate, Fall '24) · <b>CS 472</b> Computer Graphics (Fall '23).</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="honors" class="section section-alt">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">03</span>
+          <h2>Honors <span class="grad">&amp; recognition</span></h2>
+        </div>
+
+        <div class="honor-feature">
+          <div class="hf panel reveal"><div class="hf-yr mono">2023</div><h3>Trainee Highlight Award</h3><p>9th Annual BRAIN Initiative Meeting <span class="dim">· top 60</span></p></div>
+          <div class="hf panel reveal"><div class="hf-yr mono">2023</div><h3>WVU Foundation Outstanding Senior</h3><p>Top 1% of ~4,000 graduates</p></div>
+          <div class="hf panel reveal"><div class="hf-yr mono">2023</div><h3>UPE Dan Drew Award</h3><p>Highest distinction among ~600 nominees</p></div>
+          <div class="hf panel reveal"><div class="hf-yr mono">2025</div><h3>NSF Research Traineeship</h3><p>NRT Graduate Trainee</p></div>
+          <div class="hf panel reveal"><div class="hf-yr mono">2025–26</div><h3>BU BME Research Fellowship</h3><p>Graduate School Research Fellowship</p></div>
+          <div class="hf panel reveal"><div class="hf-yr mono">2026</div><h3>Neurophotonics Trainee Certificate</h3><p>BU Neurophotonics Center</p></div>
+        </div>
+
+        <details class="talks panel reveal">
+          <summary class="mono"><span>FULL HONORS LIST · 21</span><span class="plus">+</span></summary>
+          <div class="honor-cols">
+            <div>
+              <h4 class="mono">PH.D.</h4>
+              <ul>
+                <li><span class="mono dim">2026</span> Neurophotonics Trainee Certificate, BU Neurophotonics Center</li>
+                <li><span class="mono dim">2025–26</span> BU BME Graduate School Research Fellowship</li>
+              </ul>
+              <h4 class="mono">MASTER'S</h4>
+              <ul>
+                <li><span class="mono dim">2025</span> NSF Research Traineeship (NRT), Graduate Trainee</li>
+                <li><span class="mono dim">2025</span> Honorable Mention, WVU Inaugural AI Symposium</li>
+                <li><span class="mono dim">2023–25</span> WVU Research Corporation Graduate Funding</li>
+                <li><span class="mono dim">2024</span> Engineering Departmental Scholarship</li>
+                <li><span class="mono dim">2024</span> Second Best Presentation, WVU Graduate Symposium</li>
+                <li><span class="mono dim">2024</span> Upsilon Pi Epsilon Scholarship</li>
+                <li><span class="mono dim">2023</span> Trainee Highlight Award, 9th BRAIN Initiative Meeting (top 60)</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="mono">BACHELOR'S</h4>
+              <ul>
+                <li><span class="mono dim">2023</span> WVU Foundation Outstanding Senior (top 1%)</li>
+                <li><span class="mono dim">2023</span> UPE Dan Drew Award</li>
+                <li><span class="mono dim">2023</span> Honors Foundations Scholar · Summa Cum Laude</li>
+                <li><span class="mono dim">2021–23</span> Office of Global Affairs Merit Award</li>
+                <li><span class="mono dim">2020–23</span> Engineering Research Award</li>
+                <li><span class="mono dim">2019–23</span> Level-1 Academic Scholarship</li>
+                <li><span class="mono dim">2019–23</span> Engineering Excellence Award</li>
+                <li><span class="mono dim">2019–23</span> President's List (all semesters)</li>
+                <li><span class="mono dim">2022</span> Upsilon Pi Epsilon Scholarship</li>
+                <li><span class="mono dim">2021–22</span> Arts &amp; Sciences Departmental Award</li>
+                <li><span class="mono dim">2021</span> Institute of International Education Award</li>
+                <li><span class="mono dim">2020</span> Research Apprenticeship Program graduate</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+
+        <div class="two-col">
+          <div class="panel service reveal">
+            <h3 class="mini-title mono">PEER REVIEW</h3>
+            <div class="rev-cloud">
+              <span class="rev">AAAI<small>'25 '26</small></span>
+              <span class="rev">CVPR<small>'24 '25</small></span>
+              <span class="rev">ICCV<small>'23 '25</small></span>
+              <span class="rev">ECCV<small>'24</small></span>
+              <span class="rev">ICLR<small>'24</small></span>
+              <span class="rev">MICCAI<small>'23 '24 '25</small></span>
+              <span class="rev">WACV<small>'23 '24 '25</small></span>
+              <span class="rev">ISBI<small>'24 '25</small></span>
+              <span class="rev">ICASSP<small>'24</small></span>
+              <span class="rev">BMVC<small>'23 '24</small></span>
+            </div>
+            <p class="mono dim tiny">Memberships: IEEE (2022–) · Upsilon Pi Epsilon (2021–) · ACM (2019–)</p>
+          </div>
+          <div class="panel service reveal">
+            <h3 class="mini-title mono">LEADERSHIP &amp; MENTORSHIP</h3>
+            <ul class="ticks small">
+              <li><b>Mentor (2022–25).</b> Guided four students, all of whom presented at ECCV workshops or NCUR.</li>
+              <li><b>President, Upsilon Pi Epsilon WVU (2021–25).</b> Ran workshops on computer architecture, explainable AI and neural computation.</li>
+              <li><b>Motor Control Journal Club (2023–25).</b> Presented and discussed neuroscience research for prosthesis development.</li>
+              <li><b>Global InterVarsity (2019–25).</b> Hosted weekly multicultural events and international dinners.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-idx mono">04</span>
+          <h2>Toolkit <span class="grad">&amp; modalities</span></h2>
+        </div>
+        <div class="skills">
+          <div class="skill panel reveal">
+            <h3 class="mini-title mono">SIGNAL PROCESSING</h3>
+            <div class="chip-row"><span class="chip">FIR/IIR filtering</span><span class="chip">Line-noise removal</span><span class="chip">Multi-stream alignment</span><span class="chip">Artifact rejection</span><span class="chip">Spectral estimation</span><span class="chip">Wavelet · multitaper · Hilbert</span><span class="chip">Aperiodic / oscillatory separation</span><span class="chip">Phase-amplitude coupling</span><span class="chip">Circular statistics</span><span class="chip">State-space models</span></div>
+          </div>
+          <div class="skill panel reveal">
+            <h3 class="mini-title mono">MODALITIES</h3>
+            <div class="chip-row"><span class="chip chip-hot">iEEG (NeuroPace RNS)</span><span class="chip chip-hot">EMA</span><span class="chip">EMG</span><span class="chip">Speech acoustics</span><span class="chip">3D time-series microscopy</span><span class="chip">Wearable physiology</span><span class="chip">Industrial telemetry</span></div>
+          </div>
+          <div class="skill panel reveal">
+            <h3 class="mini-title mono">ML &amp; LIBRARIES</h3>
+            <div class="chip-row"><span class="chip">PyTorch</span><span class="chip">JAX</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">scikit-learn</span><span class="chip">ONNX</span><span class="chip">TorchScript</span><span class="chip">TorchIO</span><span class="chip">Napari</span><span class="chip">NumPy · SciPy · pandas</span><span class="chip">OpenCV</span><span class="chip">OpenGL</span></div>
+          </div>
+          <div class="skill panel reveal">
+            <h3 class="mini-title mono">LANGUAGES &amp; INFRA</h3>
+            <div class="chip-row"><span class="chip">Python</span><span class="chip">C/C++</span><span class="chip">MATLAB</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">VHDL</span><span class="chip">SQL</span><span class="chip">LaTeX</span><span class="chip">Linux</span><span class="chip">Docker</span><span class="chip">Slurm / HPC</span><span class="chip">Seeq</span><span class="chip">Unity · Blender</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner mono">
+      <span>© <span id="yr">2026</span> Ram J. Zaveri</span>
+      <!-- <span class="dim">Hand-built · spiking neurons rendered live in your browser</span> -->
+      <a href="#top">↑ Back to top</a>
+    </div>
+  </footer>
+
+  <script src="../js/site.js" defer></script>
+</body>
+</html>

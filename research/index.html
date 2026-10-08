@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research · Ram J. Zaveri</title>
+  <meta name="description" content="Research portfolio of Ram J. Zaveri: neural dynamics, neural signal processing, predictive coding, online learning, visual tracking and cell segmentation." />
+  <meta name="author" content="Ram J. Zaveri" />
+  <meta name="theme-color" content="#05070d" />
+  <meta property="og:title" content="Ram J. Zaveri · Neural Engineering" />
+  <meta property="og:description" content="Building neuromimetic systems from the principles of biological learning." />
+  <meta property="og:image" content="https://ramzaveri.com/img/ram.jpg" />
+  <meta property="og:url" content="https://ramzaveri.com/" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NVN2BJG');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body data-page="research">
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="../" class="brand" aria-label="Home">
+      <svg viewBox="0 0 40 40" class="brand-mark" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".5" />
+        <circle cx="20" cy="20" r="3.2" fill="currentColor" />
+        <g stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M20 16.5V6M20 23.5V34M16.7 18.6 8 13M23.3 21.4 32 27M16.7 21.4 8 27M23.3 18.6 32 13" />
+        </g>
+        <g fill="currentColor"><circle cx="20" cy="6" r="1.8" /><circle cx="20" cy="34" r="1.8" /><circle cx="8" cy="13" r="1.8" /><circle cx="32" cy="27" r="1.8" /><circle cx="8" cy="27" r="1.8" /><circle cx="32" cy="13" r="1.8" /></g>
+      </svg>
+      <span class="brand-text">RAM<span class="dim">.</span>ZAVERI</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../" data-page="home">Home</a>
+      <a href="../about/" data-page="about">About</a>
+      <a href="../research/" data-page="research">Research</a>
+      <a href="../publications/" data-page="publications">Publications</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="page-hero">
+      <canvas id="neural" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="container">
+        <div class="crumb mono"><a href="../">~/ram.zaveri</a> / research</div>
+        <h1>Research <span class="grad">portfolio</span></h1>
+        <p>Fifteen projects, each with a live, procedurally generated visual. Filter by field, or open a card for the details.</p>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section section-alt">
+      <div class="container">
+
+        <div class="filters mono reveal" role="tablist" aria-label="Filter projects">
+          <button class="filter active" data-f="all">ALL</button>
+          <button class="filter" data-f="neuro">NEUROSCIENCE</button>
+          <button class="filter" data-f="signal">SIGNAL PROCESSING</button>
+          <button class="filter" data-f="learning">LEARNING THEORY</button>
+          <button class="filter" data-f="vision">COMPUTER VISION</button>
+          <button class="filter" data-f="industry">INDUSTRY</button>
+        </div>
+
+        <div class="proj-grid" id="projGrid">
+          <!-- each card: data-tags filters, data-viz picks the animated visual (or put an <img src="...gif"> in .proj-media instead) -->
+
+          <article class="proj panel" data-tags="neuro">
+            <div class="proj-media"><canvas data-viz="speech"></canvas><span class="proj-badge mono">CURRENT</span></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2026 · Guenther Lab · in progress</div>
+              <h3>Neural Dynamics of Stuttering</h3>
+              <p>Computational modeling of how neural dynamics support fluent speech motor control, and what goes wrong in stuttering. Details will follow publication.</p>
+            </div>
+          </article>
+          <article class="proj panel" data-tags="neuro signal">
+            <div class="proj-media"><canvas data-viz="theta"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2025 · Stangl Lab</div>
+              <h3>Intracranial Theta &amp; Navigation</h3>
+              <p>Full pipeline for NeuroPace RNS iEEG, from artifact rejection to theta bouts measured against the aperiodic background and related to behavior.</p>
+              <div class="proj-links"><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Per-channel artifact and epileptiform-transient rejection, detrending, line-noise removal and bandpass filtering within the RNS bandwidth.</li>
+                <li>Theta-band (~4–12 Hz) instantaneous amplitude and phase from time-frequency decomposition, with oscillatory bouts quantified against a fitted 1/f background.</li>
+                <li>Synchronized neural, behavioral and positional streams. Circular–linear statistics relate theta to distance-to-target and spatial location.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="neuro">
+            <div class="proj-media"><canvas data-viz="auditory"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2025 · Sen Lab</div>
+              <h3>Attention in Auditory Scene Analysis</h3>
+              <p>Cortical E/I network in which top-down attention gates inhibitory interneurons to suppress competing talkers.</p>
+              <div class="proj-links"><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Spatial-cue front end built from binaural ITD/ILD signals feeds excitatory–inhibitory cortical units, so attentional gain acts on spatially indexed channels.</li>
+                <li>Evaluated with spike-timing-based measures, not firing rate alone: how decodable the target stays as competitors are added across the spatial grid.</li>
+                <li>A route toward biologically grounded sound segregation for hearing-assistive devices in multi-talker environments.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="neuro learning">
+            <div class="proj-media"><canvas data-viz="events"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2023–25 · WVU</div>
+              <h3>Online Predictive Coding for Robots</h3>
+              <p>Online learning for biomimetic robot control and vision based on cortical predictive coding. Event demarcation lets it learn hierarchical timescales.</p>
+              <div class="proj-links"><a class="lnk" href="../files/aso.pdf" target="_blank" rel="noopener">Report ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Grounded in the predictive coding theory of cortical function.</li>
+                <li>Learns hierarchical timescales through event demarcation and extracts variable-length temporal representations from a continuous observation stream.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="learning">
+            <div class="proj-media"><canvas data-viz="stream"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">ECCV-W 2024 · co-first author</div>
+              <h3>Online Stochastic Optimization for Temporal Data</h3>
+              <p>Self-supervised incremental learning on non-stationary, temporally correlated data streams of the kind open-world agents see.</p>
+              <div class="proj-links"><a class="lnk" href="../files/aso.pdf" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>Agents in the open world see non-stationary, temporally correlated streams. Standard SGD assumes i.i.d. samples from a stationary distribution. Co-designed with Shivang Patel, this framework learns quickly and stays stable on data with temporal dependencies.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision learning">
+            <div class="proj-media"><canvas data-viz="track"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">WACV 2025 · first author</div>
+              <h3>SiamABC: Efficient Robust Tracking</h3>
+              <p>A real-time Siamese tracker that adapts at test time to adverse visibility on CPU-only edge devices.</p>
+              <div class="proj-links"><a class="lnk" href="https://wvuvl.github.io/SiamABC/" target="_blank" rel="noopener">Project ↗</a><a class="lnk" href="https://openaccess.thecvf.com/content/WACV2025/html/Zaveri_Improving_Accuracy_and_Generalization_for_Efficient_Visual_Tracking_WACV_2025_paper.html" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Efficient trackers overfit to in-distribution data. SiamABC improves accuracy markedly on out-of-distribution sequences.</li>
+                <li>A forward-only, backward-free update rule on batch-norm statistics adapts to the incoming stream at negligible latency.</li>
+                <li>CPU-efficient template–search attention and new self-supervised losses offset the limited capacity of efficient trackers.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision">
+            <div class="proj-media"><canvas data-viz="rods"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">ISBI 2024 · co-first author</div>
+              <h3>Morphology-Independent Cell Segmentation</h3>
+              <p>Few-shot domain adaptation for elongated, non-convex cells such as bacteria, built on Omnipose with specialized contrastive losses.</p>
+              <div class="proj-links"><a class="lnk" href="https://ieeexplore.ieee.org/document/10635320" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>Retraining a segmentation model for every new microscopy collection costs annotation and compute. With Voke Brume, I designed contrastive losses that adapt to the target domain with pseudo-labels while staying anchored to the source. The result is clearly better segmentation of non-convex cell instances from only a few labeled samples.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision">
+            <div class="proj-media"><canvas data-viz="cells"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">WACV 2023 · Oral</div>
+              <h3>CellTranspose</h3>
+              <p>Few-shot domain-adaptive instance segmentation for convex cells, extended to 3D volumes and integrated into syGlass.</p>
+              <div class="proj-links"><a class="lnk" href="https://openaccess.thecvf.com/content/WACV2023/html/Keaton_CellTranspose_Few-Shot_Domain_Adaptation_for_Cellular_Instance_Segmentation_WACV_2023_paper.html" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Co-designed with Matthew Keaton. Instead of chasing one fully general model, the method adapts to novel data from a handful of annotations.</li>
+                <li>Extended to 3D volumes and integrated into syGlass for VR microscopy quantification, shown at SfN 2022 and 2023.</li>
+                <li>A follow-up contrastive representation loss earned a Trainee Highlight Award at the 9th Annual BRAIN Initiative Meeting.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision industry">
+            <div class="proj-media"><canvas data-viz="cloud"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2022–25 · VLG × IstoVisio contract</div>
+              <h3>AutoTrack &amp; syFind</h3>
+              <p>Adaptive 3D cell tracking, tracing, counting and segmentation, shipped in a VR microscopy product.</p>
+              <div class="proj-links"><a class="lnk" href="https://www.syglass.io/" target="_blank" rel="noopener">syGlass ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li><b>AutoTrack:</b> efficient domain adaptation for single-particle tracking in 3D time-series microscopy, with a spatiotemporal fusion module framed as attention.</li>
+                <li><b>syFind:</b> 3D cell quantification and segmentation that adapts its representations to unseen microscopy data automatically.</li>
+                <li>Done in the Vision &amp; Learning Group under the lab's contract with IstoVisio. Integrated with their front-end team into the shipping syGlass product and demoed at the SfN 2022 Expo.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="industry signal">
+            <div class="proj-media"><canvas data-viz="telemetry"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2025 · Sanofi</div>
+              <h3>Predictive Maintenance Forecasting</h3>
+              <p>VAE-LSTM anomaly detection on vaccine filling-line telemetry, deployed for real-time streaming inference.</p>
+              <div class="proj-links"><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <ul class="ticks">
+                <li>Continuous multivariate sensor telemetry in Seeq, cleaned for irregular sampling, sensor drift and missing segments.</li>
+                <li>A VAE-based LSTM learns a latent model of nominal machine behavior and flags deviations through reconstruction and prediction residuals, with no labeled fault data needed.</li>
+                <li>ONNX models deployed to the Seeq/Sanofi cloud for live predictive-maintenance decisions.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="neuro learning">
+            <div class="proj-media"><canvas data-viz="pc"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">Project</div>
+              <h3>Predictive Coding from Shunting Networks</h3>
+              <p>A receptive-field shunting network with Hebbian-like learning, in which predictive coding emerges from the formulation itself.</p>
+              <div class="proj-links"><a class="lnk" href="https://github.com/rz0012/Receptive-Field-based-Predictive-Coding/blob/master/report/report_receptive_field_pcn.pdf" target="_blank" rel="noopener">Report ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>A receptive-field-based shunting network with neurophysiologically valid dynamics and Hebbian-like learning for object recognition. Predictive coding emerged from the formulation, and a formal derivation produced a neurophysiologically plausible training procedure for deep networks.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="neuro learning">
+            <div class="proj-media"><canvas data-viz="lif"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">Project</div>
+              <h3>Continual Bayesian Learning with Spikes</h3>
+              <p>Biologically plausible Bayesian learning for continual adaptation, using a LIF-like variational threshold extended to spiking networks.</p>
+              <div class="proj-links"><a class="lnk" href="../files/invest_bnn.pdf" target="_blank" rel="noopener">Report ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>A biologically plausible Bayesian learning framework for continual adaptability and reasoning under uncertainty. An adaptive thresholding mechanism acts as a variational activation that mimics leaky integrate-and-fire dynamics, and it was extended to spiking neural networks for neuromorphic hardware.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision learning">
+            <div class="proj-media"><canvas data-viz="entropy"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">Project</div>
+              <h3>Test-Time Adaptive Cellpose</h3>
+              <p>Entropy- and contrastive-inspired losses that improve cell segmentation with no new labels and no source data.</p>
+              <div class="proj-links"><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>A test-time adaptation method for cellular instance segmentation on top of Cellpose. New losses inspired by Shannon entropy and self-supervised contrastive learning improve performance without additional labels or access to the source data.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="vision">
+            <div class="proj-media"><canvas data-viz="plant"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">CVPR-W 2021</div>
+              <h3>Fine-Grained Plant Classification</h3>
+              <p>Uses object detection as attention across 1,000 species and five plant organs, and released a long-tailed benchmark.</p>
+              <div class="proj-links"><a class="lnk" href="https://arxiv.org/pdf/2106.02141" target="_blank" rel="noopener">Paper ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>A bottom-up approach that detects plant organs (leaf, flower, fruit, bark, high-density leaves) and fuses the predictions of a variable number of organ-based species classifiers. This counters data variability and long-tail effects. Presented at WVU 2020, URDC 2021 and NCUR 2021.</p>
+            </div>
+          </article>
+
+          <article class="proj panel" data-tags="signal">
+            <div class="proj-media"><canvas data-viz="hr"></canvas></div>
+            <div class="proj-body">
+              <div class="proj-meta mono">2020 · NSF AI &amp; Health</div>
+              <h3>Wearable Physiological Analytics</h3>
+              <p>IoT system for autonomous Fitbit collection (heart rate, activity, sleep staging) with models that infer health outcomes.</p>
+              <div class="proj-links"><a class="lnk" href="https://github.com/rz0012/Data-Extraction-from-Fitbit" target="_blank" rel="noopener">Code ↗</a><button class="lnk details">Details</button></div>
+            </div>
+            <div class="proj-detail" hidden>
+              <p>Autonomous collection of wearable physiological time series, with cleaning, resampling and windowed feature extraction for irregularly sampled streams, and models trained to infer target health outcomes. Part of the NSF Artificial Intelligence and Health 2020 workshop.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner mono">
+      <span>© <span id="yr">2026</span> Ram J. Zaveri</span>
+      <!-- <span class="dim">Hand-built · spiking neurons rendered live in your browser</span> -->
+      <a href="#top">↑ Back to top</a>
+    </div>
+  </footer>
+
+  <dialog id="projDialog" class="proj-dialog panel">
+    <button class="dlg-close" aria-label="Close">×</button>
+    <div class="dlg-meta mono"></div>
+    <h3 class="dlg-title"></h3>
+    <div class="dlg-body"></div>
+    <div class="dlg-links"></div>
+  </dialog>
+
+  <script src="../js/site.js" defer></script>
+</body>
+</html>

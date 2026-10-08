@@ -1,0 +1,5 @@
+# Netlify redirects: keep links to the old Hugo site working
+/experience            /research/                        301
+/experience/*          /research/                        301
+/books                 /                                 301
+/public-speaking       /publications/                    301
