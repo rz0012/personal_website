@@ -21,7 +21,7 @@
     bg: "4,6,12", core: "255,255,255",
   };
   const THEME = { blend: "lighter", mono: '"JetBrains Mono", monospace', fx: "none" };
-  (function readTheme() {
+  function readTheme() {
     const cs = getComputedStyle(document.documentElement);
     const v = (n) => cs.getPropertyValue(n).trim().replace(/\s+/g, "");
     const map = { cyan: "cyan", violet: "violet", magenta: "magenta", lime: "lime", red: "red", white: "text", dim: "dim", bg: "bg", core: "core" };
@@ -29,15 +29,101 @@
     THEME.blend = cs.getPropertyValue("--canvas-blend").trim() || "lighter";
     THEME.mono = cs.getPropertyValue("--mono").trim() || THEME.mono;
     THEME.fx = cs.getPropertyValue("--fx").trim() || "none";
-  })();
+  }
+  readTheme();
   const rgba = (c, a) => `rgba(${c},${a})`;
+
+  /* ---------------- themes: chosen on the entry screen or from the nav dots ---------------- */
+  const THEMES = [
+    ["neural", "Neural", "Dark lab console: cyan and violet glow, live spiking network."],
+    ["matrix", "Matrix", "Phosphor green on black, monospace everything, digital rain."],
+    ["lab", "Lab Journal", "Light paper, ink-colored traces, serif type. Calm and academic."],
+  ];
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return undefined; } },   // undefined = storage blocked
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+  };
+  const retheme = [];   // callbacks run after the theme changes (rebuild sprites, effects, ...)
+  const currentTheme = () => document.documentElement.getAttribute("data-theme") || "neural";
+  function setTheme(t, persist) {
+    const d = document.documentElement;
+    if (t === "neural") d.removeAttribute("data-theme"); else d.setAttribute("data-theme", t);
+    if (window.rzFont) window.rzFont(t);
+    if (persist) store.set("rz-theme", t);
+    readTheme();
+    retheme.forEach((fn) => fn());
+    const m = $('meta[name="theme-color"]'), bg = getComputedStyle(d).getPropertyValue("--bg").trim();
+    if (m && bg) m.content = bg;
+    $$(".tdot").forEach((b) => b.classList.toggle("on", b.dataset.t === t));
+  }
+
+  function navThemes() {
+    const links = $("#navLinks"); if (!links) return;
+    const box = document.createElement("div");
+    box.className = "theme-dots"; box.setAttribute("role", "group"); box.setAttribute("aria-label", "Color theme");
+    box.innerHTML = '<span class="td-label">THEME</span>' + THEMES.map(([k, n]) =>
+      `<button class="tdot${k === currentTheme() ? " on" : ""}" data-t="${k}" title="${n} theme" aria-label="${n} theme"><i data-theme="${k}"></i></button>`).join("");
+    box.addEventListener("click", (e) => { const b = e.target.closest(".tdot"); if (b) setTheme(b.dataset.t, true); });
+    links.appendChild(box);
+  }
+
+  // small three-trace preview, drawn in each card's own theme colors
+  function previewSvg() {
+    const wave = (y, f, a, ph) => { let d = ""; for (let x = 0; x <= 300; x += 5) { const v = y + Math.sin((x / 300) * f * TAU + ph) * a * (0.55 + 0.45 * Math.sin(x * 0.045 + ph)); d += (x ? "L" : "M") + x + " " + v.toFixed(1); } return d; };
+    const sp = [22, 61, 70, 118, 164, 171, 178, 233, 270].map((x) => `M${x} 74V83`).join("");
+    return `<path d="${wave(20, 6, 9, 0)}" style="fill:none;stroke:var(--cyan);stroke-width:1.6"/>` +
+      `<path d="${wave(40, 9, 7, 1.3)}" style="fill:none;stroke:var(--violet);stroke-width:1.3"/>` +
+      `<path d="${wave(58, 4, 8, 2.1)}" style="fill:none;stroke:var(--lime);stroke-width:1.3"/>` +
+      `<path d="${sp}" style="stroke:var(--magenta);stroke-width:1.6"/>`;
+  }
+
+  function showGate(el, done) {
+    ["matrix", "lab"].forEach((t) => window.rzFont && window.rzFont(t));   // so previews render in their own type
+    el.classList.add("gate");
+    el.removeAttribute("aria-hidden");
+    el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-label", "Choose a theme");
+    const panel = document.createElement("div");
+    panel.className = "gate-panel";
+    panel.innerHTML =
+      `<h2 class="gate-title">Select your interface</h2>
+       <p class="gate-sub">Same research, three ways to see it. Hover to preview. You can switch anytime from the dots in the menu.</p>
+       <div class="gate-cards">${THEMES.map(([k, n, desc], i) =>
+         `<button class="gate-card" data-theme="${k}" data-t="${k}">
+            <svg viewBox="0 0 300 86" preserveAspectRatio="none" aria-hidden="true">${previewSvg()}</svg>
+            <span class="gc-body"><span class="gc-key">[${i + 1}]${i === 0 ? " · DEFAULT" : ""}</span><span class="gc-name">${n}</span><span class="gc-desc">${desc}</span></span>
+          </button>`).join("")}</div>
+       <div class="gate-foot"><button class="btn btn-glow gate-enter">Enter as <b class="ge-name">Neural</b> <span class="arr">→</span></button><span class="hint mono">1 · 2 · 3 to choose · Enter to continue</span></div>`;
+    $(".boot-inner", el).appendChild(panel);
+    const cards = $$(".gate-card", panel), enterBtn = $(".gate-enter", panel);
+    let sel = "neural";
+    const preview = (t) => { if (t !== currentTheme()) setTheme(t, false); $(".ge-name", panel).textContent = THEMES.find((x) => x[0] === t)[1]; };
+    const close = (t) => { setTheme(t, true); document.removeEventListener("keydown", onKey); done(); };
+    cards.forEach((c) => {
+      c.addEventListener("mouseenter", () => preview(c.dataset.t));
+      c.addEventListener("focus", () => { sel = c.dataset.t; preview(sel); });
+      c.addEventListener("click", () => close(c.dataset.t));
+    });
+    $(".gate-cards", panel).addEventListener("mouseleave", () => preview(sel));
+    enterBtn.addEventListener("click", () => close(currentTheme()));
+    function onKey(e) {
+      const i = "123".indexOf(e.key);
+      if (i >= 0) { cards[i].focus(); e.preventDefault(); }
+      else if (e.key === "Escape") close("neural");
+      else if (e.key === "Enter" && !e.target.closest("button")) close(currentTheme());
+    }
+    document.addEventListener("keydown", onKey);
+    enterBtn.focus({ preventScroll: true });
+  }
 
   /* ---------------- boot sequence (once per session) ---------------- */
   function boot() {
     const el = $("#boot");
     if (!el) return;
     const done = () => { el.classList.add("done"); try { sessionStorage.setItem("rz-boot", "1"); } catch (e) {} };
-    if (reduced || document.documentElement.classList.contains("no-boot")) { done(); return; }
+    // first visit = storage works but no theme chosen yet (a ?theme= link counts as a choice)
+    const gate = store.get("rz-theme") === null;
+    if (gate) document.documentElement.classList.remove("no-boot");
+    else if (reduced || document.documentElement.classList.contains("no-boot")) { done(); return; }
     const lines = [
       "&gt; initializing neural interface",
       "&gt; loading spiking network ........ <b>OK</b>",
@@ -45,12 +131,12 @@
       "&gt; phase-locking θ oscillators .... <b>OK</b>",
       "&gt; handshake: RAM.ZAVERI ........... <b>LINKED</b>",
     ];
-    const box = $("#bootLines"), bar = $("#bootBar");
+    const box = $("#bootLines"), bar = $("#bootBar"), step = reduced ? 0 : 170;
     lines.forEach((l, i) => setTimeout(() => {
       const d = document.createElement("div"); d.innerHTML = l; box.appendChild(d);
       bar.style.width = ((i + 1) / lines.length) * 100 + "%";
-    }, 140 + i * 170));
-    setTimeout(done, 140 + lines.length * 170 + 250);
+    }, step && 140 + i * step));
+    setTimeout(gate ? () => showGate(el, done) : done, step && 140 + lines.length * step + 250);
   }
 
   /* ---------------- nav ---------------- */
@@ -184,7 +270,9 @@
   const NET = { spikes: [], rate: 0 }; // shared with the telemetry panel
 
   function SpikingNet(cv) {
-    const sprC = glowSprite(C.cyan), sprM = glowSprite(C.magenta), sprV = glowSprite(C.violet);
+    let sprC, sprM, sprV;
+    const sprites = () => { sprC = glowSprite(C.cyan); sprM = glowSprite(C.magenta); sprV = glowSprite(C.violet); };
+    sprites(); retheme.push(sprites);
     let nodes = [], pulses = [], W = 0, H = 0, ctx;
     const mouse = { x: -1e4, y: -1e4, inside: false };
     let spikeCount = 0, rateT = 0;
@@ -628,19 +716,26 @@
   }
 
   /* ---------------- animation scheduler (only draws what is on screen) ---------------- */
-  function animate(actors) {
-    actors = actors.filter(Boolean);
-    if (!actors.length) return;
-    if (reduced) { actors.forEach((a) => { for (let i = 0; i < 90; i++) a.frame(1 / 30, i / 30); }); return; }
-    const vis = new Set();
-    const io = new IntersectionObserver((ents) => ents.forEach((e) => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target))), { rootMargin: "80px" });
-    actors.forEach((a) => io.observe(a.el));
+  const SCHED = { list: [], vis: new Set(), io: null };
+  function startLoop() {
+    if (reduced) { retheme.push(() => SCHED.list.forEach((a) => a.frame(1 / 30, 3))); return; }   // static frames: redraw on theme change
+    SCHED.io = new IntersectionObserver((ents) => ents.forEach((e) => (e.isIntersecting ? SCHED.vis.add(e.target) : SCHED.vis.delete(e.target))), { rootMargin: "80px" });
     let last = performance.now(), T = 0;
     (function loop(now) {
       const dt = Math.min(0.05, (now - last) / 1000); last = now; T += dt;
-      for (const a of actors) if (vis.has(a.el)) a.frame(dt, T);
+      for (const a of SCHED.list) if (SCHED.vis.has(a.el)) a.frame(dt, T);
       requestAnimationFrame(loop);
     })(last);
+  }
+  function addActor(a) {
+    if (!a) return;
+    SCHED.list.push(a);
+    if (reduced) { for (let i = 0; i < 90; i++) a.frame(1 / 30, i / 30); } else SCHED.io.observe(a.el);
+  }
+  function removeActor(a) {
+    SCHED.list = SCHED.list.filter((x) => x !== a);
+    if (SCHED.io) SCHED.io.unobserve(a.el);
+    SCHED.vis.delete(a.el);
   }
 
   /* ---------------- portfolio filters + detail dialog ---------------- */
@@ -672,7 +767,7 @@
     document.body.prepend(cv);
     const glyphs = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789θΔΣ";
     const fs = 16; let cols = [], W = 0, H = 0, ctx, acc = 0;
-    const resize = () => { const f = fit(cv); if (!f) return; ({ ctx, w: W, h: H } = f); cols = Array.from({ length: Math.ceil(W / fs) }, () => rand(-H / fs, 0)); ctx.fillStyle = rgba(C.bg, 1); ctx.fillRect(0, 0, W, H); };
+    const resize = () => { if (!cv.isConnected) return; const f = fit(cv); if (!f) return; ({ ctx, w: W, h: H } = f); cols = Array.from({ length: Math.ceil(W / fs) }, () => rand(-H / fs, 0)); ctx.fillStyle = rgba(C.bg, 1); ctx.fillRect(0, 0, W, H); };
     window.addEventListener("resize", resize); resize();
     return {
       el: cv,
@@ -691,28 +786,18 @@
     };
   }
 
-  /* ---------------- theme switcher (theme-lab branch only) ---------------- */
-  function themeSwitcher() {
-    const themes = [["neural", "Neural"], ["matrix", "Matrix"], ["biolum", "Bioluminescent"], ["lab", "Lab Journal"], ["synth", "Synthwave"]];
-    const cur = document.documentElement.getAttribute("data-theme") || "neural";
-    const box = document.createElement("div");
-    box.className = "theme-switch mono";
-    box.innerHTML = '<span class="ts-label">THEME</span>' + themes.map(([k, n]) => `<button data-t="${k}" class="${k === cur ? "on" : ""}">${n}</button>`).join("");
-    box.addEventListener("click", (e) => {
-      const b = e.target.closest("button"); if (!b) return;
-      try { localStorage.setItem("rz-theme", b.dataset.t); } catch (err) {}
-      const u = new URL(location.href); u.searchParams.delete("theme"); location.replace(u.toString());
-    });
-    document.body.appendChild(box);
-  }
-
   /* ---------------- init ---------------- */
-  themeSwitcher(); boot(); nav(); cursor(); reveals(); counters(); scramble(); typed(); portfolio();
+  navThemes(); boot(); nav(); cursor(); reveals(); counters(); scramble(); typed(); portfolio();
   const yr = $("#yr"); if (yr) yr.textContent = new Date().getFullYear();
-  const actors = [];
-  if (THEME.fx === "rain" && !reduced) actors.push(Rain());
-  const n = $("#neural"); if (n) actors.push(SpikingNet(n));
-  const e = $("#eeg"); if (e) actors.push(Telemetry(e));
-  $$("canvas[data-viz]").forEach((c) => actors.push(Mini(c)));
-  animate(actors);
+  startLoop();
+  let rain = null;
+  const syncFx = () => {
+    const want = THEME.fx === "rain" && !reduced;
+    if (want && !rain) { rain = Rain(); addActor(rain); }
+    else if (!want && rain) { removeActor(rain); rain.el.remove(); rain = null; }
+  };
+  syncFx(); retheme.push(syncFx);
+  const n = $("#neural"); if (n) addActor(SpikingNet(n));
+  const e = $("#eeg"); if (e) addActor(Telemetry(e));
+  $$("canvas[data-viz]").forEach((c) => addActor(Mini(c)));
 })();

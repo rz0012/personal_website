@@ -28,7 +28,11 @@
   <script>try{if(sessionStorage.getItem('rz-boot'))document.documentElement.classList.add('no-boot')}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/themes.css" />
-  <script>(function(){var t;try{t=new URLSearchParams(location.search).get('theme');if(t)localStorage.setItem('rz-theme',t);else t=localStorage.getItem('rz-theme')}catch(e){}if(t&&t!=='neural')document.documentElement.setAttribute('data-theme',t)})()</script>
+  <script>(function(){var d=document.documentElement,t;d.className+=' js';
+    var F=window.RZ_FONTS={matrix:'VT323&family=Share+Tech+Mono',lab:'IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600',biolum:'Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500',synth:'Audiowide&family=Exo+2:wght@300;400;500;600&family=Space+Mono:wght@400;700'};
+    window.rzFont=function(n){if(!F[n]||document.getElementById('font-'+n))return;var l=document.createElement('link');l.id='font-'+n;l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+F[n]+'&display=swap';document.head.appendChild(l)};
+    try{t=new URLSearchParams(location.search).get('theme');if(t)localStorage.setItem('rz-theme',t);else t=localStorage.getItem('rz-theme')}catch(e){}
+    if(t&&t!=='neural'){d.setAttribute('data-theme',t);rzFont(t)}})()</script>
 </head>
 
 <body data-page="home">

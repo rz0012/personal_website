@@ -1,27 +1,46 @@
 /* ==========================================================================
-   Theme lab: alternative palettes and type for side-by-side exploration.
-   The default ("neural") lives in style.css :root. Each theme below only
-   overrides tokens, plus a few signature touches.
-   Switch with the THEME pill (bottom-left) or ?theme=matrix|biolum|lab|synth
+   Themes. The default ("neural") lives in style.css. Each theme below only
+   overrides tokens, plus a few signature touches. Fonts for a theme are
+   loaded on demand (see the loader in each page's <head>).
+   Visitors pick one on the entry screen or from the dots in the nav.
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Audiowide&family=Exo+2:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap");
 
-/* ---------- switcher pill ---------- */
-.theme-switch {
-  position: fixed; left: 16px; bottom: 16px; z-index: 900;
-  display: flex; align-items: center; gap: 4px; flex-wrap: wrap; max-width: calc(100vw - 32px);
-  padding: 6px; border-radius: 12px; font-size: .68rem; letter-spacing: .08em;
-  background: rgba(var(--rgb-panel), .9); border: 1px solid var(--line-2);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .5);
+/* ---------- nav theme dots ---------- */
+.theme-dots { display: flex; align-items: center; gap: 6px; margin-left: 12px; }
+.theme-dots .td-label { display: none; }
+.tdot { width: 18px; height: 18px; padding: 0; border-radius: 50%; cursor: pointer; border: 1px solid var(--line-2); background: none; display: grid; place-items: center; transition: transform .2s, border-color .2s; }
+.tdot i { display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--grad); }
+.tdot:hover { transform: scale(1.15); border-color: var(--text); }
+.tdot.on { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(var(--rgb-cyan), .25); }
+@media (max-width: 900px) {
+  .theme-dots { margin: 16px 0 0; gap: 10px; }
+  .theme-dots .td-label { display: inline; font-family: var(--mono); font-size: .72rem; letter-spacing: .14em; color: var(--muted); margin-right: 6px; }
+  .tdot { width: 26px; height: 26px; } .tdot i { width: 18px; height: 18px; }
 }
-.theme-switch .ts-label { color: var(--dim); padding: 0 8px 0 6px; }
-.theme-switch button {
-  font: inherit; letter-spacing: inherit; color: var(--muted); background: transparent;
-  border: 1px solid transparent; border-radius: 8px; padding: 6px 10px; cursor: pointer;
+
+/* ---------- entry screen: choose an interface ---------- */
+#boot.gate { background: rgba(var(--rgb-bg), .78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); overflow-y: auto; padding: 24px 16px; transition: opacity .6s ease, visibility .6s, background .4s; }
+#boot.gate .boot-inner { width: min(980px, 100%); }
+.gate-panel { margin-top: 26px; animation: gate-in .6s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes gate-in { from { opacity: 0; transform: translateY(14px); } }
+.gate-title { font-family: var(--display); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--text); margin: 0 0 6px; letter-spacing: -0.01em; }
+.gate-sub { color: var(--muted); font-family: var(--font); font-size: .95rem; margin: 0 0 22px; }
+.gate-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.gate-card {
+  text-align: left; cursor: pointer; padding: 0; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line-2); background: var(--bg); color: var(--text);
+  font-family: var(--font); transition: transform .25s, box-shadow .25s, border-color .25s;
 }
-.theme-switch button:hover { color: var(--text); border-color: var(--line-2); }
-.theme-switch button.on { color: var(--bg); background: var(--cyan); }
+.gate-card:hover, .gate-card:focus-visible { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 18px 40px -18px rgba(var(--rgb-cyan), .6); outline: none; }
+.gate-card svg { display: block; width: 100%; height: 86px; background: rgba(var(--rgb-panel), .7); border-bottom: 1px solid var(--line); }
+.gate-card .gc-body, .gate-card .gc-key { display: block; }
+.gate-card .gc-body { padding: 14px 16px 16px; }
+.gate-card .gc-key { font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; color: var(--cyan); }
+.gate-card .gc-name { display: block; font-family: var(--display); font-size: 1.5rem; margin: 2px 0 4px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gate-card .gc-desc { display: block; font-size: .85rem; color: var(--muted); line-height: 1.5; }
+.gate-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+.gate-foot .hint { font-size: .7rem; color: var(--dim); letter-spacing: .06em; }
+@media (max-width: 760px) { .gate-cards { grid-template-columns: 1fr; } .gate-card svg { height: 60px; } }
 
 .fx-rain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: .2; }
 
@@ -33,7 +52,7 @@
   --rgb-panel: 0, 18, 6;
   --rgb-line: 0, 255, 70;
   --rgb-text: 190, 255, 200;
-  --rgb-dim: 40, 130, 60;
+  --rgb-dim: 52, 156, 76;
   --rgb-cyan: 0, 255, 65;
   --rgb-violet: 0, 170, 60;
   --rgb-magenta: 170, 255, 170;
@@ -116,7 +135,7 @@
   --rgb-panel: 255, 255, 255;
   --rgb-line: 40, 50, 70;
   --rgb-text: 27, 31, 42;
-  --rgb-dim: 115, 122, 138;
+  --rgb-dim: 96, 103, 118;
   --rgb-cyan: 31, 79, 209;
   --rgb-violet: 109, 40, 217;
   --rgb-magenta: 194, 24, 91;
@@ -148,7 +167,6 @@
 [data-theme="lab"] .btn-glow { background: var(--cyan); color: #fff; border-color: var(--cyan); }
 [data-theme="lab"] .btn-glow:hover { color: #fff; box-shadow: 0 8px 20px -8px rgba(31, 79, 209, .6); }
 [data-theme="lab"] .filter.active { color: #fff; }
-[data-theme="lab"] .theme-switch button.on { color: #fff; }
 [data-theme="lab"] .stat { background: rgba(255, 255, 255, .85); }
 [data-theme="lab"] .sec-idx, [data-theme="lab"] .tl-node { box-shadow: none; }
 [data-theme="lab"] .tl-axon { box-shadow: none; }
